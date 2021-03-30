@@ -1,0 +1,7 @@
+**/*.*
+!nvim/**/*.*
+!fish/**/*.*
+!LICENSE
+.undodir/
+Session.vim
+packer_compiled.vim
