@@ -3,3 +3,4 @@ if not set -q HOMEBREW_PREFIX
 end
 
 set WINHOME /mnt/c/Users/jonas
+set -x GPG_TTY (tty)
