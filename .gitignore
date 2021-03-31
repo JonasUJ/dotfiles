@@ -5,7 +5,8 @@
 !xxh/**/*.*
 
 !LICENSE
-!startship.toml
+!.gitignore
+!starship.toml
 
 .undodir/
 

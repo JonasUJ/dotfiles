@@ -1,0 +1,47 @@
+[aws]
+symbol=" "
+[dart]
+symbol=" "
+[directory]
+symbol=" "
+[docker]
+symbol=" "
+[elixir]
+symbol=" "
+[elm]
+symbol=" "
+[erlang]
+symbol=" "
+[gcloud]
+symbol=" "
+[git_status]
+style="bold green"
+[golang]
+symbol=" "
+[java]
+symbol=" "
+[lua]
+symbol=" "
+[memory_usage]
+symbol=" "
+[nix_shell]
+symbol=" "
+[openstack]
+symbol=" "
+[package]
+symbol=" "
+[perl]
+symbol=" "
+[php]
+symbol=" "
+[python]
+symbol=" "
+[ruby]
+symbol=" "
+[rust]
+symbol=" "
+[status]
+format="[(SIG$signal_name )]($style)"
+disabled=false
+[swift]
+symbol=" "
