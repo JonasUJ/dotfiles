@@ -5,6 +5,7 @@
 !xxh/**/*.*
 
 !LICENSE
+!startship.toml
 
 .undodir/
 
