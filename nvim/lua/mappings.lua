@@ -55,16 +55,17 @@ map('t', '<Esc>', '<C-\\><C-n>')
 map('n', '<leader>b', ':ls<CR>:b<SPACE>')
 
 -- Use [[ and ]] when { and } are not on the first column (from motions.txt)
-map('i', '[[', '?{<CR>w99[{')
-map('i', '][', '/}<CR>b99]}')
-map('i', ']]', 'j0[[%/{<CR>')
-map('i', '[]', 'k$][%?}<CR>')
+map('n', '[[', '?{<CR>w99[{')
+map('n', '][', '/}<CR>b99]}')
+map('n', ']]', 'j0[[%/{<CR>')
+map('n', '[]', 'k$][%?}<CR>')
 
 -- Highlight all occurrences of word under the cursor
 map('n', '<A-*>', '*``')
 map('n', '<A-#>', '#``')
 
--- Line comments
-map('i', "<Leader>'", ':CommentToggle<CR>')
-map('n', "<Leader>'", ':CommentToggle<CR>')
-map('v', "<Leader>'", ':CommentToggle<CR>gv')
+-- Cycle quickfix/location list
+map('n', '<A-n>', ':cnext<CR>')
+map('n', '<A-N>', ':cprev<CR>')
+map('n', '<A-m>', ':lnext<CR>')
+map('n', '<A-M>', ':lprev<CR>')

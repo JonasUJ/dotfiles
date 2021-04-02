@@ -38,7 +38,6 @@ return require('packer').startup(function(use)
     use 'jschmold/sweet-dark.vim'
     use 'morhetz/gruvbox'
     use 'joshdick/onedark.vim'
-    use {'sonph/onehalf', rtp = 'vim'}
 
     -- Icons
     use 'ryanoasis/vim-devicons'

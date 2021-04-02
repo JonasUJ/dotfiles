@@ -28,7 +28,7 @@ map('n', '<A-9>', ':BufferLast<CR>', { silent = true })
 map('n', '<A-c>', ':BufferClose<CR>', { silent = true })
 
 -- Magic buffer-picking mode
-map('n', '<A-p>', '   :BufferPick<CR>', { silent = true })
+map('n', '<A-b>', '   :BufferPick<CR>', { silent = true })
 
 -- NOTE: If barbar's option dict isn't created yet, create it
 vim.cmd "let bufferline = get(g:, 'bufferline', {})"

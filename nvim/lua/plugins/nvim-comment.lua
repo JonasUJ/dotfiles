@@ -8,6 +8,5 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- Line comments
-map('i', "<Leader>'", ':CommentToggle<CR>')
 map('n', "<Leader>'", ':CommentToggle<CR>')
 map('v', "<Leader>'", ':CommentToggle<CR>gv')
