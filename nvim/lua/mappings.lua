@@ -5,7 +5,7 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- Use alt + hjkl to resize windows
+-- Use alt + k/j to move lines up/down
 map('n', '<A-j>', ':m .+1<CR>==')
 map('n', '<A-k>', ':m .-2<CR>==')
 map('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
@@ -17,17 +17,9 @@ map('v', '<A-k>', ':m \'<-2<CR>gv=gv')
 map('n', 'd', '"dd')
 map('v', 'd', '"dd')
 
--- Easy CAPS
-map('i', '<C-u>', '<ESC>g~iwgi')
-map('n', '<C-u>', 'g~iw<Esc>')
-
--- TAB in general mode will move to text buffer
--- map('n', '<TAB>', ':bnext<CR>')
--- SHIFT-TAB will go back
--- map('n', '<S-TAB>', ':bprevious<CR>')
-
 -- Alternate way to save
 map('n', '<C-s>', ':w<CR>')
+
 -- <TAB>: completion.
 map('i', '<expr><TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
 
@@ -37,7 +29,7 @@ map('v', '>', '>gv')
 map('v', '<S-TAB>', '<gv')
 map('v', '<TAB>', '>gv')
 
--- I use ^W-c to close windows and :q, ZZ, and ZQ to close the whole editor
+-- I use ^W-c to close windows and ZZ/ZQ to close the whole editor
 map('n', 'ZZ', ':wqa<CR>')
 map('n', 'ZQ', ':qa<CR>')
 
@@ -49,12 +41,11 @@ map('n', '<C-l>', '<C-w>l')
 
 -- Exit terminal mode
 map('t', '<Esc>', '<C-\\><C-n>')
-map('t', '<Esc>', '<C-\\><C-n>')
 
 -- Open buffers
 map('n', '<leader>b', ':ls<CR>:b<SPACE>')
 
--- Use [[ and ]] when { and } are not on the first column (from motions.txt)
+-- Use [[ and ]] when { and } are not on the first column (from motion.txt)
 map('n', '[[', '?{<CR>w99[{')
 map('n', '][', '/}<CR>b99]}')
 map('n', ']]', 'j0[[%/{<CR>')
