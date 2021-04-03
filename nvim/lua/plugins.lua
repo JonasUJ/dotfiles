@@ -17,9 +17,14 @@ return require('packer').startup(function(use)
     -- Better syntax support
     use 'sheerun/vim-polyglot'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'p00f/nvim-ts-rainbow'
+    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 
     -- Workspaces and autosave
     use 'thaerkh/vim-workspace'
+
+    -- File explorer
+    use 'kyazdani42/nvim-tree.lua'
 
     -- Auto closing
     use 'tmsvg/pear-tree'
@@ -28,7 +33,6 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
     use 'kabouzeid/nvim-lspinstall'
-    use 'rust-lang/vscode-rust'
 
     -- Autocomplete
     use 'hrsh7th/nvim-compe'
