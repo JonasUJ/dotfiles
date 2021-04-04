@@ -29,6 +29,9 @@ return require('packer').startup(function(use)
     -- Auto closing
     use 'tmsvg/pear-tree'
 
+    -- Jump to word
+    use 'unblevable/quick-scope'
+
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
@@ -54,4 +57,10 @@ return require('packer').startup(function(use)
     -- Comments
     use 'terrortylor/nvim-comment'
 
+    -- Color on hex codes
+    use 'norcalli/nvim-colorizer.lua'
+
+    -- Git
+    use 'tpope/vim-fugitive'
+    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 end)

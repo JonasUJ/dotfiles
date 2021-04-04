@@ -30,13 +30,13 @@ map('n', '<A-c>', ':BufferClose<CR>')
 -- Magic buffer-picking mode
 map('n', '<A-b>', ':BufferPick<CR>')
 
--- NOTE: If barbar's option dict isn't created yet, create it
-vim.cmd "let bufferline = get(g:, 'bufferline', {})"
+vim.cmd [[
+  let g:bufferline = get(g:, 'bufferline', {})
 
--- Enable/disable auto-hiding the tab bar when there is a single buffer
-vim.g.bufferline.auto_hide = true
+  let g:bufferline.auto_hide = v:true
 
--- Enable/disable icons
--- if set to 'numbers', will show buffer index in the tabline
--- if set to 'both', will show buffer index and icons in the tabline
-vim.g.bufferline.icons = 'both'
+  let g:bufferline.icons = 'both'
+
+  let g:bufferline.icon_separator_active = '▌'
+  let g:bufferline.icon_separator_inactive = '▏'
+]]
