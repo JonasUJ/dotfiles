@@ -31,6 +31,7 @@ o.updatetime = 300 -- Faster completion
 o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 o.path = ".,,**" -- Easier find
+o.showmode = false -- Mode is shown on statusline instead
 
 vim.cmd "set noswapfile" -- Swapfiles are annoying when autosaving
 vim.cmd "filetype plugin indent on" -- Swapfiles are annoying when autosaving
