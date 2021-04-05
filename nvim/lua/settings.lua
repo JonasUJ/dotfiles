@@ -1,5 +1,6 @@
 local o = vim.o
 local bo = vim.bo
+local wo = vim.wo
 local w = vim.w
 local b = vim.b
 local g = vim.g
@@ -25,6 +26,7 @@ o.autoindent = true -- Good auto indent
 bo.autoindent = true -- Good auto indent
 o.laststatus = 0 -- Always display the status line
 o.number = true -- Line numbers
+wo.number = true -- Line numbers
 o.cursorline = true -- Enable highlighting of the current line
 o.showtabline = 4 -- Always show tabs
 o.updatetime = 300 -- Faster completion

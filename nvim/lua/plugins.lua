@@ -63,4 +63,7 @@ return require('packer').startup(function(use)
     -- Git
     use 'tpope/vim-fugitive'
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+
+    -- Preview markdown et al.
+    use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
 end)
