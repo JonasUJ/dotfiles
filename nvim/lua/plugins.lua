@@ -17,7 +17,6 @@ return require('packer').startup(function(use)
     -- Better syntax support
     use 'sheerun/vim-polyglot'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use 'p00f/nvim-ts-rainbow'
     use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 
     -- Workspaces and autosave
@@ -68,5 +67,5 @@ return require('packer').startup(function(use)
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
 
     -- Rust
-    use 'rust-lang/rust.vim'
+    -- use 'rust-lang/rust.vim'
 end)
