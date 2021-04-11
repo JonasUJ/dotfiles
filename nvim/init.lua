@@ -3,6 +3,7 @@ require "settings"
 require "mappings"
 require "theme"
 require "lsp"
+require "neovide"
 
 -- Plugins
 require "plugins"
