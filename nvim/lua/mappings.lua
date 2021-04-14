@@ -13,9 +13,17 @@ map('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
 map('v', '<A-j>', ':m \'>+1<CR>gv=gv')
 map('v', '<A-k>', ':m \'<-2<CR>gv=gv')
 
--- Delele instead of cut
+-- Use specific regisers for actions the would otherwise use ""
 map('n', 'd', '"dd')
 map('v', 'd', '"dd')
+map('n', 'c', '"cc')
+map('v', 'c', '"cc')
+map('n', 'x', '"xx')
+map('v', 'x', '"xx')
+
+-- This makes more sense on non-US keyboards
+map('n', ';', ',')
+map('n', ',', ';')
 
 -- Alternate way to save
 map('n', '<C-s>', ':w<CR>')
