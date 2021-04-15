@@ -25,12 +25,6 @@ map('v', 'x', '"xx')
 map('n', ';', ',')
 map('n', ',', ';')
 
--- Alternate way to save
-map('n', '<C-s>', ':w<CR>')
-
--- <TAB>: completion.
-map('i', '<expr><TAB>', 'pumvisible() ? "\\<C-n>" : "\\<TAB>"')
-
 -- Better tabbing
 map('v', '<', '<gv')
 map('v', '>', '>gv')
