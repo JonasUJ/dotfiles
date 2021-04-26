@@ -139,8 +139,21 @@ local on_attach = function(client, bufnr)
     -- end
 end
 
+
 local function setup_servers()
     require'lspinstall'.setup()
+    lspconfig = require'lspconfig'
+
+    -- Omnisharp
+    local pid = vim.fn.getpid()
+    local omnisharp_bin = "/home/jonasuj/omnisharp/run"
+    require'lspconfig'.omnisharp.setup{
+        cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) },
+        root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj"),
+        on_attach = on_attach,
+    }
+
+    -- General
     local servers = require'lspinstall'.installed_servers()
     for _, server in pairs(servers) do
         require'lspconfig'[server].setup{ on_attach = on_attach }

@@ -2,9 +2,7 @@
 symbol=" "
 [dart]
 symbol=" "
-[directory]
-symbol=" "
-[docker]
+[docker_context]
 symbol=" "
 [elixir]
 symbol=" "

@@ -35,6 +35,9 @@ o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 o.path = ".,,**" -- Easier find
 o.showmode = false -- Mode is shown on statusline instead
 
+vim.cmd "set grepprg=rg\\ --vimgrep\\ --no-heading\\ --smart-case"
+vim.cmd "set grepformat=%f:%l:%c:%m,%f%l%m"
+
 vim.cmd "set noswapfile" -- Swapfiles are annoying when autosaving
 vim.cmd "filetype plugin indent on" -- Swapfiles are annoying when autosaving
 
