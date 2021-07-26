@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
     -- Better syntax support
     use 'sheerun/vim-polyglot'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+    use 'lukas-reineke/indent-blankline.nvim'
 
     -- Workspaces and autosave
     use 'thaerkh/vim-workspace'
