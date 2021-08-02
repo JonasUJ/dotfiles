@@ -25,6 +25,16 @@ return require('packer').startup(function(use)
     -- File explorer
     use 'kyazdani42/nvim-tree.lua'
 
+    -- Icons
+    use 'ryanoasis/vim-devicons'
+    use 'kyazdani42/nvim-web-devicons'
+
+    -- Quickfix list
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+    }
+
     -- Auto closing
     use 'tmsvg/pear-tree'
 
@@ -44,10 +54,6 @@ return require('packer').startup(function(use)
     use 'jschmold/sweet-dark.vim'
     use 'morhetz/gruvbox'
     use 'joshdick/onedark.vim'
-
-    -- Icons
-    use 'ryanoasis/vim-devicons'
-    use 'kyazdani42/nvim-web-devicons'
 
     -- Status Line and Bufferline
     use 'glepnir/galaxyline.nvim'
