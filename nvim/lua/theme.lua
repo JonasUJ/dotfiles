@@ -5,4 +5,7 @@ vim.o.background = "dark"
 vim.g.gruvbox_italic = 1
 vim.g.onedark_terminal_italics = 1
 
-vim.cmd "colorscheme onedark"
+vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_dark_sidebar = {"trouble", "NvimTree", "packer"}
+
+vim.cmd "colorscheme tokyonight"
