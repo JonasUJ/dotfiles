@@ -27,6 +27,9 @@ map('n', '<A-9>', ':BufferLast<CR>')
 -- Close buffer
 map('n', '<A-c>', ':BufferClose<CR>')
 
+-- Pin buffer
+map('n', '<A-p>', ':BufferPin<CR>')
+
 -- Magic buffer-picking mode
 map('n', '<A-b>', ':BufferPick<CR>')
 
