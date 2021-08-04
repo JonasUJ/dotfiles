@@ -24,7 +24,6 @@ o.expandtab = true -- Converts tabs to spaces
 bo.expandtab = true -- Converts tabs to spaces
 o.autoindent = true -- Good auto indent
 bo.autoindent = true -- Good auto indent
-o.laststatus = 0 -- Always display the status line
 o.number = true -- Line numbers
 wo.number = true -- Line numbers
 o.cursorline = true -- Enable highlighting of the current line
