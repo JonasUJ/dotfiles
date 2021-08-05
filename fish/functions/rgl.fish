@@ -1,6 +1,6 @@
 function rgl
      if isatty stdout
-        command rg -p $argv | less -RMFXK
+        command rg -p $argv | less -RMFXKS
      else
         command rg $argv
      end
