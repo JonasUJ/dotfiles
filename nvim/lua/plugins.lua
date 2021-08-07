@@ -73,6 +73,9 @@ return require('packer').startup(function(use)
     -- Preview markdown et al.
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
 
+    -- Debugger
+    use 'puremourning/vimspector'
+
     -- Rust
     -- use 'rust-lang/rust.vim'
 end)
