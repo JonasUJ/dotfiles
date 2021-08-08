@@ -1,4 +1,5 @@
 -- General
+require "plugins"
 require "settings"
 require "mappings"
 require "theme"
@@ -6,7 +7,6 @@ require "lsp"
 require "neovide"
 
 -- Plugins
-require "plugins"
 require "plugins/treesitter"
 require "plugins/nvim-comment"
 require "plugins/barbar"
