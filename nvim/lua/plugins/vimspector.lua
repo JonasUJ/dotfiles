@@ -7,6 +7,7 @@ vim.cmd [[
     " for visual mode, the visually selected text
     xmap <Leader>k <Plug>VimspectorBalloonEval
 
-    nmap <Leader><F11> <Plug>VimspectorUpFrame
-    nmap <Leader><F12> <Plug>VimspectorDownFrame
+    nnoremap <Leader><F3> :VimspectorReset<CR>
+    nnoremap <Leader><F11> <Plug>VimspectorUpFrame
+    nnoremap <Leader><F12> <Plug>VimspectorDownFrame
 ]]
