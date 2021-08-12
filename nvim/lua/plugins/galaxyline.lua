@@ -399,28 +399,6 @@ gls.short_line_left[S()] = {
 N = 1
 
 gls.short_line_right[S()] = {
-    SFileEncode = {
-        provider = 'FileEncode',
-        condition = condition.hide_in_width,
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
-    }
-}
-
-gls.short_line_right[S()] = {
-    STabstop = {
-        provider = function()
-            return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
-        end,
-        condition = condition.hide_in_width,
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
-    }
-}
-
-gls.short_line_right[S()] = {
     SRFileIcon = {
         provider = 'FileIcon',
         condition = condition.buffer_not_empty,
