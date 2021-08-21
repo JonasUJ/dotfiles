@@ -7,7 +7,7 @@ require "lsp"
 require "neovide"
 
 -- Plugins
-require "plugins/treesitter"
+-- require "plugins/treesitter"
 require "plugins/nvim-comment"
 require "plugins/barbar"
 require "plugins/nvim-web-devicons"
