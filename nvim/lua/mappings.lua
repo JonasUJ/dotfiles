@@ -62,3 +62,7 @@ map('n', '<A-n>', ':cnext<CR>')
 map('n', '<A-N>', ':cprev<CR>')
 map('n', '<A-m>', ':lnext<CR>')
 map('n', '<A-M>', ':lprev<CR>')
+
+-- Grep selection
+map('n', '<leader>f', ':silent grep <cword><CR> :Trouble quickfix<CR>')
+map('v', '<leader>f', '"fy :silent grep <C-r>f<CR> :Trouble quickfix<CR>')
