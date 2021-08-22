@@ -33,13 +33,13 @@ map('n', '<A-p>', ':BufferPin<CR>')
 -- Magic buffer-picking mode
 map('n', '<A-b>', ':BufferPick<CR>')
 
-vim.cmd [[
-  let g:bufferline = get(g:, 'bufferline', {})
+vim.g.bufferline = {
+  animation = false,
+  closable = false,
+  auto_hide = true,
+  icons = 'both',
+  icon_separator_active = '▌',
+  icon_separator_inactive = '▏',
+  icon_pinned = '車'
+}
 
-  let g:bufferline.auto_hide = v:true
-
-  let g:bufferline.icons = 'both'
-
-  let g:bufferline.icon_separator_active = '▌'
-  let g:bufferline.icon_separator_inactive = '▏'
-]]
