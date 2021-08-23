@@ -45,6 +45,7 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
     use 'kabouzeid/nvim-lspinstall'
+    use "ray-x/lsp_signature.nvim"
 
     -- Autocomplete
     use 'hrsh7th/nvim-compe'

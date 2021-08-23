@@ -137,6 +137,14 @@ local on_attach = function(client, bufnr)
     --         augroup END
     --         ]], false)
     -- end
+
+    require "lsp_signature".on_attach({
+            bind = true, -- This is mandatory, otherwise border config won't get registered.
+            hint_prefix = "param ",
+            handler_opts = {
+                border = "none"
+            }
+        }, bufnr)
 end
 
 local function setup_servers()
