@@ -208,6 +208,21 @@ gls.left[S()] = {
 
 N = 1
 
+local function Clock ()
+    return os.date("%H:%M")
+end
+
+gls.mid[S()] = {
+    Clock = {
+        provider = Clock,
+        icon = " ",
+        condition = condition.hide_in_width,
+        highlight = {colors.secondary_bg, colors.bg}
+    }
+}
+
+N = 1
+
 gls.right[S()] = {
     DiagnosticError = {
         provider = 'DiagnosticError',
