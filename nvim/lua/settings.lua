@@ -43,6 +43,14 @@ vim.cmd "filetype plugin indent on" -- Swapfiles are annoying when autosaving
 g.polyglot_disabled = {'autoindent'}
 
 g.workspace_autosave_always = false -- Disable autosave, even when not in a workspace
+-- ... and then re-enable it on fewer event types
+g.autosave_ft_ignore = {}
+vim.cmd [[
+augroup autosave
+    autocmd!
+    autocmd BufRead * if &filetype == "" | setlocal ft=text | endif
+    autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 && index(g:autosave_ft_ignore, &ft) == -1 && &buftype == "" | silent write | endif
+augroup END ]]
 
 g.pear_tree_smart_openers = 1
 g.pear_tree_smart_closers = 1
