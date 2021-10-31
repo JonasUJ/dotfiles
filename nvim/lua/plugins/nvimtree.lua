@@ -17,8 +17,6 @@ vim.g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git a
 vim.g.nvim_tree_add_trailing = 1 -- 0 by default, append a trailing slash to folder names
 vim.g.nvim_tree_group_empty = 1 -- 0 by default, compact folders that only contain a single folder into one node in the file tree
 
-vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache', 'env' }
-
 vim.g.nvim_tree_icons = {
     default = '',
     symlink = '',
