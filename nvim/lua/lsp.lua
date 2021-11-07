@@ -1,79 +1,74 @@
 vim.o.completeopt = "menuone,noselect"
 
-require'compe'.setup {
-    enabled = true,
-    autocomplete = true,
-    debug = false,
-    min_length = 1,
-    preselect = 'enable',
-    throttle_time = 80,
-    source_timeout = 200,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    documentation = true,
+-- require'compe'.setup {
+--     enabled = true,
+--     autocomplete = true,
+--     debug = false,
+--     min_length = 1,
+--     preselect = 'enable',
+--     throttle_time = 80,
+--     source_timeout = 200,
+--     incomplete_delay = 400,
+--     max_abbr_width = 100,
+--     max_kind_width = 100,
+--     max_menu_width = 100,
+--     documentation = true,
+--
+--     source = {
+--         path = {kind = "  "},
+--         buffer = {kind = "  "},
+--         calc = {kind = "  "},
+--         vsnip = {kind = "  "},
+--         nvim_lsp = {kind = "  "},
+--         nvim_lua = {kind = "  "},
+--         spell = {kind = "  "},
+--         tags = false,
+--         emoji = {kind = " ﲃ ", filetypes={"markdown"}}
+--     }
+-- }
 
-    source = {
-        path = {kind = "  "},
-        buffer = {kind = "  "},
-        calc = {kind = "  "},
-        vsnip = {kind = "  "},
-        nvim_lsp = {kind = "  "},
-        nvim_lua = {kind = "  "},
-        spell = {kind = "  "},
-        tags = false,
-        emoji = {kind = " ﲃ ", filetypes={"markdown"}}
-    }
+local cmp = require'cmp'
+cmp.setup {
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+        end,
+    },
+    mapping = {
+        ['<Tab>'] = cmp.mapping.select_next_item{ behavior = cmp.SelectBehavior.Insert },
+        ['<S-Tab>'] = cmp.mapping.select_prev_item{ behavior = cmp.SelectBehavior.Insert },
+        ['<C-y>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-e>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<CR>'] = cmp.mapping.confirm{ select = true, behavior = cmp.SelectBehavior.Replace },
+    },
+    sources = cmp.config.sources {
+        { name = 'nvim_lsp' },
+        { name = 'vsnip' }, -- For vsnip users.
+        -- { name = 'luasnip' }, -- For luasnip users.
+        -- { name = 'ultisnips' }, -- For ultisnips users.
+        -- { name = 'snippy' }, -- For snippy users.
+        { name = 'buffer' },
+        { name = 'path' },
+        { name = 'crates' },
+    },
 }
+
+cmp.setup.cmdline(':', {
+  sources = {
+    { name = 'cmdline' }
+  }
+})
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 require'lspinstall'.post_install_hook = function ()
     setup_servers() -- reload installed servers
     vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
-
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-    elseif vim.fn.call("vsnip#available", {1}) == 1 then
-        return t "<Plug>(vsnip-expand-or-jump)"
-    elseif check_back_space() then
-        return t "<Tab>"
-    else
-        return vim.fn['compe#complete']()
-    end
-end
-_G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
-    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-        return t "<Plug>(vsnip-jump-prev)"
-    else
-        return t "<S-Tab>"
-    end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 -- symbols for autocomplete
 require('lspkind').init({
@@ -116,6 +111,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'gc', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<A-f>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     buf_set_keymap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -124,19 +120,22 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     -- buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-    -- -- Set autocommands conditional on server_capabilities
-    -- if client.resolved_capabilities.document_highlight then
-    --     vim.api.nvim_exec([[
-    --         hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-    --         hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-    --         hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-    --         augroup lsp_document_highlight
-    --         autocmd! * <buffer>
-    --         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-    --         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    --         augroup END
-    --         ]], false)
-    -- end
+    vim.lsp.handlers['textDocument/publishDiagnostic'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = {
+                spacing = 4,
+            },
+            underline = true,
+            update_in_insert = false,
+            show_signs = true,
+            severity_sort = true,
+        })
+
+    local signs = { Error = " ", Warning = " ", Hint = " ", Info = " " }
+
+    for type, icon in pairs(signs) do
+        local hl = "LspDiagnosticsSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
 
     require "lsp_signature".on_attach({
             bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -148,11 +147,20 @@ local on_attach = function(client, bufnr)
         }, bufnr)
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require'cmp_nvim_lsp'.update_capabilities(capabilities)
+
 local function setup_servers()
     require'lspinstall'.setup()
     local servers = require'lspinstall'.installed_servers()
     for _, server in pairs(servers) do
-        require'lspconfig'[server].setup{ on_attach = on_attach }
+        -- Rust is set up in plugins/rust-tools.lua
+        if server ~= "rust" then
+            require'lspconfig'[server].setup{
+                on_attach = on_attach,
+                capabilities = capabilities,
+            }
+        end
     end
 end
 

@@ -2,6 +2,7 @@ local gl = require('galaxyline')
 
 vim.o.laststatus = 2
 
+-- TODO: link to highlight groups
 -- TokyoNight Storm
 local colors = {
     bg = '#1f2335',
@@ -63,9 +64,9 @@ local mode_color = {
 
 local condition = require('galaxyline.condition')
 local gls = gl.section
-gl.short_line_list = {'NvimTree', 'packer', 'trouble'}
+gl.short_line_list = {'NvimTree', 'packer', 'trouble', 'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks', 'dapui_watches', 'dap-repl'}
 
-N = 1
+local N = 1
 function S()
     N = N + 1
     return N
@@ -390,52 +391,31 @@ gls.short_line_left[S()] = {
         provider = function()
             return ' '
         end,
-        condition = condition.buffer_not_empty,
-        highlight = {'NONE', colors.bg}
+        highlight = {'NONE', colors.secondary_bg}
     }
 }
 
 gls.short_line_left[S()] = {
     SFileIcon = {
         provider = 'FileIcon',
-        condition = condition.buffer_not_empty,
-        highlight = {colors.turquoise, colors.bg}
+        highlight = {colors.blue, colors.secondary_bg}
     }
 }
 
 gls.short_line_left[S()] = {
     SFileName = {
-        provider = 'SFileName',
-        condition = condition.buffer_not_empty,
-        highlight = {colors.turquoise, colors.bg}
+        provider = 'FileName',
+        highlight = {colors.blue, colors.secondary_bg}
     }
 }
 
-N = 1
-
-gls.short_line_right[S()] = {
-    SRFileIcon = {
-        provider = 'FileIcon',
-        condition = condition.buffer_not_empty,
-        separator = '  ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.turquoise, colors.bg}
-    }
-}
-gls.short_line_right[S()] = {
-    SBufferType = {
-        provider = 'FileTypeName',
-        condition = condition.hide_in_width,
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.turquoise, colors.bg}
-    }
-}
-
-gls.short_line_right[S()] = {
-    Space = {
+gls.short_line_left[S()] = {
+    SSepLeftSpace = {
         provider = function()
-            return ' '
+            return ''
         end,
-        highlight = {colors.bg, colors.bg}
+        separator = ' ',
+        separator_highlight = {'NONE', colors.bg},
+        highlight = {colors.secondary_bg, colors.bg}
     }
 }

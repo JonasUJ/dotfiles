@@ -40,7 +40,11 @@ vim.cmd "set grepformat=%f:%l:%c:%m,%f%l%m"
 vim.cmd "set noswapfile" -- Swapfiles are annoying when autosaving
 vim.cmd "filetype plugin indent on" -- Swapfiles are annoying when autosaving
 
+vim.cmd "set colorcolumn=101"
+vim.cmd "set signcolumn=yes"
+
 g.polyglot_disabled = {'autoindent'}
+g.pear_tree_ft_disabled = {'TelescopePrompt'}
 
 g.workspace_autosave_always = false -- Disable autosave, even when not in a workspace
 -- ... and then re-enable it on fewer event types

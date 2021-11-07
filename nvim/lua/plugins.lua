@@ -14,6 +14,14 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    -- Rust
+    use { 'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use { 'simrat39/rust-tools.nvim', requires = {
+            'neovim/nvim-lspconfig',
+            'nvim-lua/plenary.nvim',
+            'mfussenegger/nvim-dap'
+        }}
+
     -- Better syntax support
     use 'sheerun/vim-polyglot'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -24,6 +32,9 @@ return require('packer').startup(function(use)
 
     -- File explorer
     use 'kyazdani42/nvim-tree.lua'
+    use { 'nvim-telescope/telescope.nvim', requires = {
+            'nvim-lua/plenary.nvim'
+        }}
 
     -- Icons
     use 'ryanoasis/vim-devicons'
@@ -48,8 +59,16 @@ return require('packer').startup(function(use)
     use "ray-x/lsp_signature.nvim"
 
     -- Autocomplete
-    use 'hrsh7th/nvim-compe'
-    use 'hrsh7th/vim-vsnip'
+    -- use 'hrsh7th/nvim-compe'
+    use { 'hrsh7th/nvim-cmp', requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'neovim/nvim-lspconfig',
+            'hrsh7th/cmp-vsnip',
+            'hrsh7th/vim-vsnip',
+        }}
 
     -- Themes
     use 'jschmold/sweet-dark.vim'
@@ -75,8 +94,5 @@ return require('packer').startup(function(use)
     use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install'}
 
     -- Debugger
-    use 'puremourning/vimspector'
-
-    -- Rust
-    -- use 'rust-lang/rust.vim'
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)

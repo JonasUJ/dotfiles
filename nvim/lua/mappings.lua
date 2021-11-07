@@ -1,5 +1,5 @@
 -- Mappings helper
-local function map(mode, lhs, rhs, opts)
+function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
@@ -40,6 +40,22 @@ map('n', '<C-h>', '<C-w>h')
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
+map('n', '<C-c>', '<C-w>c')
+
+-- Window resize
+map('n', '<A-S-h>', '<Cmd>vertical resize -2<CR>')
+map('n', '<A-S-j>', '<Cmd>resize -2<CR>')
+map('n', '<A-S-k>', '<Cmd>resize +2<CR>')
+map('n', '<A-S-l>', '<Cmd>vertical resize +2<CR>')
+
+-- Escape
+map('i', 'jk', '<Esc>')
+map('i', 'kj', '<Esc>')
+map('c', 'jk', '<Esc>')
+map('c', 'kj', '<Esc>')
+
+-- Buffers
+map('n', '<Leader>bd', '<Cmd>bd!<CR>')
 
 -- Exit terminal mode
 map('t', '<Esc>', '<C-\\><C-n>')
@@ -64,5 +80,5 @@ map('n', '<A-m>', ':lnext<CR>')
 map('n', '<A-M>', ':lprev<CR>')
 
 -- Grep selection
-map('n', '<leader>f', ':silent grep <cword><CR> :Trouble quickfix<CR>')
-map('v', '<leader>f', '"fy :silent grep <C-r>f<CR> :Trouble quickfix<CR>')
+-- map('n', '<leader>f', ':silent grep <cword><CR> :Trouble quickfix<CR>')
+-- map('v', '<leader>f', '"fy :silent grep <C-r>f<CR> :Trouble quickfix<CR>')

@@ -9,3 +9,10 @@ vim.g.tokyonight_style = "storm"
 vim.g.tokyonight_dark_sidebar = {"trouble", "NvimTree", "packer"}
 
 vim.cmd "colorscheme tokyonight"
+
+vim.cmd [[
+augroup ColorColumnTheme
+    autocmd!
+    autocmd ColorScheme * highlight! link ColorColumn StatusLine
+augroup END
+]]
