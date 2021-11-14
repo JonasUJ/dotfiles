@@ -46,7 +46,9 @@ vim.cmd "set signcolumn=yes"
 g.polyglot_disabled = {'autoindent'}
 g.pear_tree_ft_disabled = {'TelescopePrompt'}
 
-g.workspace_autosave_always = false -- Disable autosave, even when not in a workspace
+-- Disable autosave, even when not in a workspace
+g.workspace_autosave_always = false
+g.workspace_autosave = false
 -- ... and then re-enable it on fewer event types
 g.autosave_ft_ignore = {}
 vim.cmd [[
