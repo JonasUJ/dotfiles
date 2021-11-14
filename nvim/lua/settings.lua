@@ -53,7 +53,7 @@ vim.cmd [[
 augroup autosave
     autocmd!
     autocmd BufRead * if &filetype == "" | setlocal ft=text | endif
-    autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 && index(g:autosave_ft_ignore, &ft) == -1 && &buftype == "" | silent write | endif
+    autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 && index(g:autosave_ft_ignore, &ft) == -1 && &buftype == "" | silent write! | doautocmd BufWritePost | endif
 augroup END ]]
 
 g.pear_tree_smart_openers = 1
