@@ -12,6 +12,21 @@ require'rust-tools'.setup {
     server = {
         -- cargo install ra_ap_rust-analyzer
         cmd = { "rust-analyzer" },
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    allFeatures = true,
+                    overrideCommand = {
+                        "cargo",
+                        "clippy",
+                        "--workspace",
+                        "--message-format=json",
+                        "--all-targets",
+                        "--all-features",
+                    },
+                },
+            },
+        },
         on_attach = function (client, bufnr)
             local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
