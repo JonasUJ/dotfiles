@@ -65,10 +65,10 @@ cmp.setup.cmdline(':', {
 })
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-    setup_servers() -- reload installed servers
-    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+-- require'lspinstall'.post_install_hook = function ()
+--     setup_servers() -- reload installed servers
+--     vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+-- end
 
 -- symbols for autocomplete
 require('lspkind').init({
@@ -130,10 +130,10 @@ local on_attach = function(client, bufnr)
             severity_sort = true,
         })
 
-    local signs = { Error = " ", Warning = " ", Hint = " ", Info = " " }
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
     for type, icon in pairs(signs) do
-        local hl = "LspDiagnosticsSign" .. type
+        local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
 
@@ -151,17 +151,12 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require'cmp_nvim_lsp'.update_capabilities(capabilities)
 
 local function setup_servers()
-    require'lspinstall'.setup()
-    local servers = require'lspinstall'.installed_servers()
-    for _, server in pairs(servers) do
-        -- Rust is set up in plugins/rust-tools.lua
-        if server ~= "rust" then
-            require'lspconfig'[server].setup{
-                on_attach = on_attach,
-                capabilities = capabilities,
-            }
-        end
-    end
+    require'nvim-lsp-installer'.on_server_ready(function(server)
+        server:setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+    end)
 end
 
 setup_servers()

@@ -55,7 +55,7 @@ return require('packer').startup(function(use)
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
-    use 'kabouzeid/nvim-lspinstall'
+    use { 'williamboman/nvim-lsp-installer', requires = { 'neovim/nvim-lspconfig' }}
     use "ray-x/lsp_signature.nvim"
 
     -- Autocomplete
