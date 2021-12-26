@@ -1,6 +1,6 @@
 -- General
-require "plugins"
 require "settings"
+require "plugins"
 require "mappings"
 require "theme"
 require "lsp"

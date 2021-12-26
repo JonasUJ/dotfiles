@@ -4,6 +4,7 @@ end
 
 starship init fish | source
 
+set -x RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/library/
 set WINHOME /mnt/c/Users/jonas
 set -x GPG_TTY (tty)
 
