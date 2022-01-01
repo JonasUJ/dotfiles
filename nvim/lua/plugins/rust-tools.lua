@@ -1,6 +1,8 @@
-local extension_path = '/home/jonasuj/.vscode-server/extensions/vadimcn.vscode-lldb-1.6.9/'
-local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+-- Set LLDB_EXT_PATH to extension install location
+-- Usually:
+-- ~/.vscode/extensions/vadimcn.vscode-lldb-1.6.9/
+local codelldb_path = vim.env.LLDB_EXT_PATH .. '/adapter/codelldb'
+local liblldb_path = vim.env.LLDB_EXT_PATH .. '/lldb/lib/liblldb.so'
 
 require('rust-tools.inlay_hints').set_inlay_hints()
 
