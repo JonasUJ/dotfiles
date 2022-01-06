@@ -59,10 +59,24 @@ cmp.setup {
 }
 
 cmp.setup.cmdline(':', {
-  sources = {
-    { name = 'cmdline' }
-  }
-})
+        sources = cmp.config.sources(
+            {
+                { name = 'path' }
+            },
+            {
+                { 
+                    name = 'cmdline',
+                    -- Re-fix https://github.com/hrsh7th/cmp-cmdline/issues/5
+                    keyword_pattern = [=[[[:keyword:]-]*]=]
+                }
+            })
+    })
+
+cmp.setup.cmdline('/', {
+        sources = {
+            { name = 'buffer' }
+        }
+    })
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 -- require'lspinstall'.post_install_hook = function ()
