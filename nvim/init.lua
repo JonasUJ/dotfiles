@@ -2,6 +2,7 @@
 require "settings"
 require "plugins"
 require "mappings"
+require "commands"
 require "theme"
 require "lsp"
 -- require "neovide"
