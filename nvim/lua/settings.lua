@@ -58,6 +58,15 @@ augroup autosave
     autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 && index(g:autosave_ft_ignore, &ft) == -1 && &buftype == "" | silent write! | doautocmd BufWritePost | endif
 augroup END ]]
 
+vim.cmd [[
+let g:workspace_persist_undo_history = 0
+let g:workspace_session_directory = $HOME . '/.nvim/sessions/'
+if has('persistent_undo')
+    set undodir=$HOME/.nvim/undodir
+    set undofile
+endif ]]
+
 g.pear_tree_smart_openers = 1
 g.pear_tree_smart_closers = 1
 g.pear_tree_smart_backspace = 1
+g.pear_tree_repeatable_expand = 0
