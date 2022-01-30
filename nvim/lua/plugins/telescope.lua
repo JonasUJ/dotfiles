@@ -44,10 +44,13 @@ require'telescope'.setup {
         lsp_type_definitions = {
           theme = "dropdown",
         },
-        lsp_workspace_symbols = {
+        lsp_dynamic_workspace_symbols = {
           theme = "dropdown",
         },
-        lsp_workspace_diagnostics = {
+        diagnostics = {
+          theme = "ivy",
+        },
+        lsp_code_actions = {
           theme = "ivy",
         },
     },
@@ -81,11 +84,12 @@ map('n', '<Leader>ft', '<Cmd>lua require"telescope.builtin".tags()<CR>')
 
 -- LSP
 map('n', '<Leader>fr', '<Cmd>lua require"telescope.builtin".lsp_references()<CR>')
-map('n', '<Leader>fe', '<Cmd>lua require"telescope.builtin".lsp_workspace_diagnostics()<CR>')
+map('n', '<Leader>fe', '<Cmd>lua require"telescope.builtin".diagnostics()<CR>')
 map('n', '<Leader>fi', '<Cmd>lua require"telescope.builtin".lsp_implementations()<CR>')
 map('n', '<Leader>fd', '<Cmd>lua require"telescope.builtin".lsp_definitions()<CR>')
 map('n', '<Leader>fD', '<Cmd>lua require"telescope.builtin".lsp_type_definitions()<CR>')
-map('n', '<Leader>fs', '<Cmd>lua require"telescope.builtin".lsp_workspace_symbols()<CR>')
+map('n', '<Leader>fs', '<Cmd>lua require"telescope.builtin".lsp_dynamic_workspace_symbols()<CR>')
+map('n', 'gc', '<Cmd>lua require"telescope.builtin".lsp_code_actions()<CR>')
 
 -- Git
 map('n', '<Leader>gc', '<Cmd>lua require"telescope.builtin".git_commits()<CR>')
