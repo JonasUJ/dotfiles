@@ -43,7 +43,6 @@ vim.cmd "filetype plugin indent on" -- Swapfiles are annoying when autosaving
 vim.cmd "set colorcolumn=101"
 vim.cmd "set signcolumn=yes"
 
-g.polyglot_disabled = {'autoindent'}
 g.pear_tree_ft_disabled = {'TelescopePrompt'}
 
 -- Disable autosave, even when not in a workspace

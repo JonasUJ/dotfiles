@@ -42,11 +42,7 @@ require'rust-tools'.setup {
             buf_set_keymap('n', 'gc', '<Cmd>RustCodeAction<CR>', opts)
             buf_set_keymap('n', '<A-f>', '<Cmd>RustFmt<CR>', opts)
             buf_set_keymap('n', '<F2>', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-            buf_set_keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-            buf_set_keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-            buf_set_keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-            buf_set_keymap('n', '<Leader>T', '<Cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-            buf_set_keymap('n', '<Leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+            buf_set_keymap('n', '<Leader>e', '<Cmd>lua vim.diagnostic.open_float()<CR>', opts)
             -- buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
             vim.lsp.handlers['textDocument/publishDiagnostic'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
