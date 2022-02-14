@@ -1,32 +1,5 @@
 vim.o.completeopt = "menuone,noselect"
 
--- require'compe'.setup {
---     enabled = true,
---     autocomplete = true,
---     debug = false,
---     min_length = 1,
---     preselect = 'enable',
---     throttle_time = 80,
---     source_timeout = 200,
---     incomplete_delay = 400,
---     max_abbr_width = 100,
---     max_kind_width = 100,
---     max_menu_width = 100,
---     documentation = true,
---
---     source = {
---         path = {kind = "  "},
---         buffer = {kind = "  "},
---         calc = {kind = "  "},
---         vsnip = {kind = "  "},
---         nvim_lsp = {kind = "  "},
---         nvim_lua = {kind = "  "},
---         spell = {kind = "  "},
---         tags = false,
---         emoji = {kind = " ﲃ ", filetypes={"markdown"}}
---     }
--- }
-
 local cmp = require'cmp'
 cmp.setup {
     snippet = {
@@ -56,6 +29,35 @@ cmp.setup {
         { name = 'path' },
         { name = 'crates' },
     },
+    formatting = {
+        format = require'lspkind'.cmp_format({
+                mode = 'symbol_text',
+                maxwidth = 50,
+                symbol_map = {
+                    Text = '  ',
+                    Method = '  ',
+                    Function = '  ',
+                    Constructor = '  ',
+                    Variable = '[]',
+                    Class = '  ',
+                    Interface = ' 蘒',
+                    Module = '  ',
+                    Property = '  ',
+                    Unit = ' 塞 ',
+                    Value = '  ',
+                    Enum = ' 練',
+                    Keyword = '  ',
+                    Snippet = '  ',
+                    Color = '',
+                    File = '',
+                    Folder = ' ﱮ ',
+                    EnumMember = '  ',
+                    Constant = '  ',
+                    Struct = '  '
+                }
+
+            })
+    }
 }
 
 cmp.setup.cmdline(':', {
@@ -64,7 +66,7 @@ cmp.setup.cmdline(':', {
                 { name = 'path' }
             },
             {
-                { 
+                {
                     name = 'cmdline',
                     -- Re-fix https://github.com/hrsh7th/cmp-cmdline/issues/5
                     keyword_pattern = [=[[[:keyword:]-]*]=]
@@ -76,39 +78,6 @@ cmp.setup.cmdline('/', {
         sources = {
             { name = 'buffer' }
         }
-    })
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
--- require'lspinstall'.post_install_hook = function ()
---     setup_servers() -- reload installed servers
---     vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
--- end
-
--- symbols for autocomplete
-require('lspkind').init({
-        with_text = false,
-        symbol_map = {
-            Text = '  ',
-            Method = '  ',
-            Function = '  ',
-            Constructor = '  ',
-            Variable = '[]',
-            Class = '  ',
-            Interface = ' 蘒',
-            Module = '  ',
-            Property = '  ',
-            Unit = ' 塞 ',
-            Value = '  ',
-            Enum = ' 練',
-            Keyword = '  ',
-            Snippet = '  ',
-            Color = '',
-            File = '',
-            Folder = ' ﱮ ',
-            EnumMember = '  ',
-            Constant = '  ',
-            Struct = '  '
-        },
     })
 
 local on_attach = function(client, bufnr)
