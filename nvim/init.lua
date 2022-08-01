@@ -1,3 +1,8 @@
+if vim.g.vscode then
+    vim.cmd [[ set noloadplugins ]]
+    return
+end
+
 -- General
 require "settings"
 require "plugins"
