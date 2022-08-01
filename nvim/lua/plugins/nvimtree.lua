@@ -49,7 +49,7 @@ require'nvim-tree'.setup {
     -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
     open_on_tab         = false,
     -- hijacks new directory buffers when they are opened.
-    update_to_buf_dir   = {
+    hijack_directories  = {
         -- enable the feature
         enable = true,
         -- allow to open the tree if it was previously closed
