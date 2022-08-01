@@ -27,9 +27,6 @@ return require('packer').startup(function(use)
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'lukas-reineke/indent-blankline.nvim'
 
-    -- Workspaces and autosave
-    use 'thaerkh/vim-workspace'
-
     -- File explorer
     use 'kyazdani42/nvim-tree.lua'
     use { 'nvim-telescope/telescope.nvim', requires = {
