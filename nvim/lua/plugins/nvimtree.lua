@@ -13,29 +13,11 @@ vim.api.nvim_set_keymap('n', '<Leader>t', ':NvimTreeToggle<CR>', { noremap = tru
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 require'nvim-tree'.setup {
-    auto_ignore_ft = { 'startify', 'dashboard' }, -- empty by default, don't auto open tree on specific filetypes.
-    indent_markers = 1, -- 0 by default, this option shows indent markers when folders are open
-    git_hl = 1, -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
-    add_trailing = 1, -- 0 by default, append a trailing slash to folder names
-    group_empty = 1, -- 0 by default, compact folders that only contain a single folder into one node in the file tree
-
-    icons = {
-        default = '',
-        symlink = '',
-        git = {
-            unstaged = "",
-            staged = "✓",
-            unmerged = "",
-            renamed = "➜",
-            untracked = ""
+    renderer = {
+        indent_markers = {
+            enable = true,
         },
-        folder = {
-            default = "",
-            open = "",
-            empty = "",
-            empty_open = "",
-            symlink = ""
-        }
+        highlight_git = true
     },
 
     -- disables netrw completely
@@ -90,7 +72,6 @@ require'nvim-tree'.setup {
         -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
         side = 'left',
         -- if true the tree will resize itself after opening a file
-        auto_resize = false,
         mappings = {
             -- custom only false will merge the list with the default mappings
             -- if true, it will only use your list to set the mappings
