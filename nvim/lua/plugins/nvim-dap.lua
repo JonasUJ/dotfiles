@@ -1,14 +1,15 @@
-local dap, dapui = require('dap'), require('dapui')
+local dap, dapui = require('dap'), require("dapui")
 
-dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
-dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
-dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
-dap.defaults.fallback.terminal_win_cmd = '50vsplit new'
+dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
+dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 
-vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'Error', linehl = '', numhl = '' })
-vim.fn.sign_define('DapBreakpointCondition', { text = '◐', texthl = 'Error', linehl = '', numhl = '' })
-vim.fn.sign_define('DapBreakpointRejected', { text = '○', texthl = 'Error', linehl = '', numhl = '' })
-vim.fn.sign_define('DapStopped', {text = '→', texthl = 'DiagnosticVirtualTextWarn', linehl = 'DiagnosticVirtualTextWarn', numhl = '' })
+vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "Error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "◐", texthl = "Error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "○", texthl = "Error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped",
+    { text = "→", texthl = "DiagnosticVirtualTextWarn", linehl = "DiagnosticVirtualTextWarn", numhl = "" })
 
 dapui.setup {
     icons = { expanded = "▾", collapsed = "▸" },
@@ -52,20 +53,20 @@ dapui.setup {
     windows = { indent = 1 },
 }
 
-map('n', '<Leader>k', '<Cmd>lua require"dapui".eval()<CR>')
-map('n', '<Leader><F2>', '<Cmd>lua require"dapui".toggle()<CR>')
-map('n', '<F3>', '<Cmd>lua require"dap".restart()<CR>')
-map('n', '<Leader><F3>', '<Cmd>lua require"dap".run_last()<CR>')
-map('n', '<F4>', '<Cmd>lua require"dap".pause()<CR>')
-map('n', '<F5>', '<Cmd>lua require"dap".continue()<CR>')
-map('n', '<Leader><F5>', '<Cmd>lua require"dap".reverse_continue()<CR>')
-map('n', '<F6>', '<Cmd>lua require"dap".run_to_cursor()<CR>')
-map('n', '<Leader><F6>', '<Cmd>lua require"dap".goto_()<CR>')
-map('n', '<F7>', '<Cmd>lua require"dap".terminate()<CR>')
-map('n', '<Leader><F8>', '<Cmd>lua require"dap".list_breakpoints()<CR><Cmd>Trouble quickfix<CR>')
-map('n', '<F9>', '<Cmd>lua require"dap".toggle_breakpoint()<CR>')
-map('n', '<Leader><F9>', '<Cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>')
-map('n', '<F10>', '<Cmd>lua require"dap".step_over()<CR>')
-map('n', '<Leader><F10>', '<Cmd>lua require"dap".step_back()<CR>')
-map('n', '<F11>', '<Cmd>lua require"dap".step_into()<CR>')
-map('n', '<F12>', '<Cmd>lua require"dap".step_out()<CR>')
+Map("n", "<Leader>k", "<Cmd>lua require'dapui'.eval()<CR>")
+Map("n", "<Leader><F2>", "<Cmd>lua require'dapui'.toggle()<CR>")
+Map("n", "<F3>", "<Cmd>lua require'dap'.restart()<CR>")
+Map("n", "<Leader><F3>", "<Cmd>lua require'dap'.run_last()<CR>")
+Map("n", "<F4>", "<Cmd>lua require'dap'.pause()<CR>")
+Map("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
+Map("n", "<Leader><F5>", "<Cmd>lua require'dap'.reverse_continue()<CR>")
+Map("n", "<F6>", "<Cmd>lua require'dap'.run_to_cursor()<CR>")
+Map("n", "<Leader><F6>", "<Cmd>lua require'dap'.goto_()<CR>")
+Map("n", "<F7>", "<Cmd>lua require'dap'.terminate()<CR>")
+Map("n", "<Leader><F8>", "<Cmd>lua require'dap'.list_breakpoints()<CR><Cmd>Trouble quickfix<CR>")
+Map("n", "<F9>", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>")
+Map("n", "<Leader><F9>", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+Map("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
+Map("n", "<Leader><F10>", "<Cmd>lua require'dap'.step_back()<CR>")
+Map("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>")
+Map("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>")

@@ -1,55 +1,44 @@
-local o = vim.o
-local bo = vim.bo
-local wo = vim.wo
-local w = vim.w
-local b = vim.b
-local g = vim.g
+require "utils"
 
-g.mapleader = " "
+G.mapleader = " "
 
-w.conceallevel = 0 -- So that I can see `` in markdown files
-b.fileencoding = "utf-8" -- The encoding written to file
-o.encoding = "utf-8" -- The encoding displayed
-o.hidden = true -- Required to keep multiple buffers open multiple buffers
-o.wrap = false -- Display long lines as just one line
-o.ruler = true -- Show the cursor position all the time
-o.mouse = "a" -- Enable your mouse
-o.splitbelow = true -- Horizontal splits will automatically be below
-o.splitright = true -- Vertical splits will automatically be to the right
-o.tabstop = 4 -- Insert 4 spaces for a tab
-bo.tabstop = 4 -- Insert 4 spaces for a tab
-o.shiftwidth = 4 -- Change the number of space characters inserted for indentation
-bo.shiftwidth = 4 -- Change the number of space characters inserted for indentation
-o.expandtab = true -- Converts tabs to spaces
-bo.expandtab = true -- Converts tabs to spaces
-o.autoindent = true -- Good auto indent
-bo.autoindent = true -- Good auto indent
-o.number = true -- Line numbers
-wo.number = true -- Line numbers
-o.cursorline = true -- Enable highlighting of the current line
-o.showtabline = 4 -- Always show tabs
-o.updatetime = 300 -- Faster completion
-o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
-o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
-o.path = ".,,**" -- Easier find
-o.showmode = false -- Mode is shown on statusline instead
+W.conceallevel = 0 -- So that I can see `` in markdown files
+B.fileencoding = "utf-8" -- The encoding written to file
+O.encoding = "utf-8" -- The encoding displayed
+O.hidden = true -- Required to keep multiple buffers open multiple buffers
+O.wrap = false -- Display long lines as just one line
+O.ruler = true -- Show the cursor position all the time
+O.mouse = "a" -- Enable your mouse
+O.splitbelow = true -- Horizontal splits will automatically be below
+O.splitright = true -- Vertical splits will automatically be to the right
+O.tabstop = 4 -- Insert 4 spaces for a tab
+BO.tabstop = 4 -- Insert 4 spaces for a tab
+O.shiftwidth = 4 -- Change the number of space characters inserted for indentation
+BO.shiftwidth = 4 -- Change the number of space characters inserted for indentation
+O.expandtab = true -- Converts tabs to spaces
+BO.expandtab = true -- Converts tabs to spaces
+O.autoindent = true -- Good auto indent
+BO.autoindent = true -- Good auto indent
+O.number = true -- Line numbers
+WO.number = true -- Line numbers
+O.cursorline = true -- Enable highlighting of the current line
+O.showtabline = 4 -- Always show tabs
+O.updatetime = 300 -- Faster completion
+O.timeoutlen = 500 -- By default timeoutlen is 1000 ms
+O.clipboard = "unnamedplus" -- Copy paste between vim and everything else
+O.path = ".,,**" -- Easier find
+O.showmode = false -- Mode is shown on statusline instead
 
 vim.cmd "set grepprg=rg\\ --vimgrep\\ --no-heading\\ --smart-case\\ --"
 vim.cmd "set grepformat=%f:%l:%c:%m,%f%l%m"
 
 vim.cmd "set noswapfile" -- Swapfiles are annoying when autosaving
-vim.cmd "filetype plugin indent on" -- Swapfiles are annoying when autosaving
+vim.cmd "filetype plugin indent on"
 
 vim.cmd "set colorcolumn=101"
 vim.cmd "set signcolumn=yes"
 
-g.pear_tree_ft_disabled = {'TelescopePrompt'}
-
--- Disable autosave, even when not in a workspace
-g.workspace_autosave_always = false
-g.workspace_autosave = false
--- ... and then re-enable it on fewer event types
-g.autosave_ft_ignore = {}
+G.autosave_ft_ignore = {}
 vim.cmd [[
 augroup autosave
     autocmd!
@@ -58,14 +47,7 @@ augroup autosave
 augroup END ]]
 
 vim.cmd [[
-let g:workspace_persist_undo_history = 0
-let g:workspace_session_directory = $HOME . '/.nvim/sessions/'
-if has('persistent_undo')
+if has("persistent_undo")
     set undodir=$HOME/.nvim/undodir
     set undofile
 endif ]]
-
-g.pear_tree_smart_openers = 1
-g.pear_tree_smart_closers = 1
-g.pear_tree_smart_backspace = 1
-g.pear_tree_repeatable_expand = 0

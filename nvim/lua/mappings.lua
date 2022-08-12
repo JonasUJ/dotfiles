@@ -1,84 +1,69 @@
--- Mappings helper
-function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 -- Use alt + k/j to move lines up/down
-map('n', '<A-j>', ':m .+1<CR>==')
-map('n', '<A-k>', ':m .-2<CR>==')
-map('i', '<A-j>', '<Esc>:m .+1<CR>==gi')
-map('i', '<A-k>', '<Esc>:m .-2<CR>==gi')
-map('v', '<A-j>', ':m \'>+1<CR>gv=gv')
-map('v', '<A-k>', ':m \'<-2<CR>gv=gv')
-
--- Use specific regisers for actions the would otherwise use ""
-map('n', 'd', '"dd')
-map('v', 'd', '"dd')
-map('n', 'c', '"cc')
-map('v', 'c', '"cc')
-map('n', 'x', '"xx')
-map('v', 'x', '"xx')
+Map("n", "<A-j>", ":m .+1<CR>==")
+Map("n", "<A-k>", ":m .-2<CR>==")
+Map("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
+Map("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
+Map("v", "<A-j>", ":m \">+1<CR>gv=gv")
+Map("v", "<A-k>", ":m \"<-2<CR>gv=gv")
 
 -- This makes more sense on non-US keyboards
-map('n', ';', ',')
-map('n', ',', ';')
+Map("n", ";", ",")
+Map("n", ",", ";")
 
 -- Better tabbing
-map('v', '<', '<gv')
-map('v', '>', '>gv')
-map('v', '<S-TAB>', '<gv')
-map('v', '<TAB>', '>gv')
+Map("v", "<", "<gv")
+Map("v", ">", ">gv")
+Map("v", "<S-TAB>", "<gv")
+Map("v", "<TAB>", ">gv")
 
 -- I use ^W-c to close windows and ZZ/ZQ to close the whole editor
-map('n', 'ZZ', ':wqa<CR>')
-map('n', 'ZQ', ':qa<CR>')
+Map("n", "ZZ", ":wqa<CR>")
+Map("n", "ZQ", ":qa<CR>")
 
 -- Better window navigation
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
-map('n', '<C-c>', '<C-w>c')
+Map("n", "<C-h>", "<C-w>h")
+Map("n", "<C-j>", "<C-w>j")
+Map("n", "<C-k>", "<C-w>k")
+Map("n", "<C-l>", "<C-w>l")
+Map("n", "<C-c>", "<C-w>c")
 
 -- Window resize
-map('n', '<A-S-h>', '<Cmd>vertical resize -2<CR>')
-map('n', '<A-S-j>', '<Cmd>resize -2<CR>')
-map('n', '<A-S-k>', '<Cmd>resize +2<CR>')
-map('n', '<A-S-l>', '<Cmd>vertical resize +2<CR>')
+Map("n", "<A-S-h>", "<Cmd>vertical resize -2<CR>")
+Map("n", "<A-S-j>", "<Cmd>resize -2<CR>")
+Map("n", "<A-S-k>", "<Cmd>resize +2<CR>")
+Map("n", "<A-S-l>", "<Cmd>vertical resize +2<CR>")
 
 -- Escape
-map('i', 'jk', '<Esc>')
-map('i', 'kj', '<Esc>')
-map('c', 'jk', '<Esc>')
-map('c', 'kj', '<Esc>')
+Map("i", "jk", "<Esc>")
+Map("i", "kj", "<Esc>")
+Map("c", "jk", "<Esc>")
+Map("c", "kj", "<Esc>")
 
 -- Buffers
-map('n', '<Leader>bd', '<Cmd>bd!<CR>')
+Map("n", "<Leader>bd", "<Cmd>bd!<CR>")
 
 -- Exit terminal mode
-map('t', '<Esc>', '<C-\\><C-n>')
+Map("t", "<Esc>", "<C-\\><C-n>")
 
 -- Open buffers
-map('n', '<leader>b', ':ls<CR>:b<SPACE>')
+Map("n", "<leader>b", ":ls<CR>:b<SPACE>")
 
 -- Use [[ and ]] when { and } are not on the first column (from motion.txt)
-map('n', '[[', '?{<CR>w99[{')
-map('n', '][', '/}<CR>b99]}')
-map('n', ']]', 'j0[[%/{<CR>')
-map('n', '[]', 'k$][%?}<CR>')
+Map("n", "[[", "?{<CR>w99[{")
+Map("n", "][", "/}<CR>b99]}")
+Map("n", "]]", "j0[[%/{<CR>")
+Map("n", "[]", "k$][%?}<CR>")
 
 -- Highlight all occurrences of word under the cursor
-map('n', '<A-*>', '*``')
-map('n', '<A-#>', '#``')
+Map("n", "<A-*>", "*``")
+Map("n", "<A-#>", "#``")
 
 -- Cycle quickfix/location list
-map('n', '<A-n>', ':cnext<CR>')
-map('n', '<A-N>', ':cprev<CR>')
-map('n', '<A-m>', ':lnext<CR>')
-map('n', '<A-M>', ':lprev<CR>')
+Map("n", "<A-n>", ":cnext<CR>")
+Map("n", "<A-N>", ":cprev<CR>")
+Map("n", "<A-m>", ":lnext<CR>")
+Map("n", "<A-M>", ":lprev<CR>")
 
 -- Grep selection
--- map('n', '<leader>f', ':silent grep <cword><CR> :Trouble quickfix<CR>')
--- map('v', '<leader>f', '"fy :silent grep <C-r>f<CR> :Trouble quickfix<CR>')
+-- Map("n", "<leader>f", ":silent grep <cword><CR> :Trouble quickfix<CR>")
+-- Map("v", "<leader>f", ""fy :silent grep <C-r>f<CR> :Trouble quickfix<CR>")
