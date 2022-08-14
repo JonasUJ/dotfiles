@@ -54,6 +54,7 @@ return require("packer").startup(function(use)
     use "onsails/lspkind-nvim"
     use { "williamboman/nvim-lsp-installer", requires = { "neovim/nvim-lspconfig" } }
     use "ray-x/lsp_signature.nvim"
+    use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
     -- Autocomplete
     -- use "hrsh7th/nvim-compe"

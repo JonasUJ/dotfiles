@@ -18,20 +18,20 @@ function M.mappings()
     Map("n", "gc", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     Map("n", "<A-f>", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     Map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    Map("n", "<Leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
     -- Map("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 end
 
 function M.diagnostics()
-    vim.lsp.handlers["textDocument/publishDiagnostic"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {
-            spacing = 4,
+    vim.diagnostic.config {
+        virtual_text = false,
+        virtual_lines = {
+            only_current_line = true,
         },
         underline = true,
         update_in_insert = false,
         show_signs = true,
         severity_sort = true,
-    })
+    }
 
     local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 

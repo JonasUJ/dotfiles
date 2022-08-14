@@ -1,5 +1,6 @@
 require "plugins.nvim-cmp"
 require "plugins.lsp_signature"
+require "plugins.lsp_lines"
 
 require "nvim-lsp-installer".setup()
 local lspconfig = require "lspconfig"
