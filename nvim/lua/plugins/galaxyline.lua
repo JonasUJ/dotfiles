@@ -65,7 +65,7 @@ local mode_color = {
 local condition = require "galaxyline.condition"
 local gls = gl.section
 gl.short_line_list = { "NvimTree", "packer", "trouble", "dapui_scopes", "dapui_breakpoints", "dapui_stacks",
-    "dapui_watches", "dap-repl" }
+    "dapui_watches", "dap-repl", "fugitiveblame" }
 
 local N = 1
 function S()
