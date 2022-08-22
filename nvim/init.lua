@@ -14,9 +14,11 @@ require "lsp"
 -- require "neovide"
 
 -- Plugins
-require "plugins.pear-tree"
+require "plugins.nvim-autopairs"
+require "plugins.impatient"
+require "plugins.mason"
 require "plugins.treesitter"
-require "plugins.nvim-comment"
+require "plugins.Comment"
 require "plugins.barbar"
 require "plugins.nvim-web-devicons"
 require "plugins.galaxyline"

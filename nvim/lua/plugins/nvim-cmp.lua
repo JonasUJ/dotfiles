@@ -20,6 +20,7 @@ cmp.setup {
         { name = "buffer" },
         { name = "path" },
         { name = "crates" },
+        { name = "nvim_lsp_signature_help" },
     },
     formatting = {
         format = require "plugins.lspkind".format;
