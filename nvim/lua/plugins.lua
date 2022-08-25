@@ -46,6 +46,8 @@ return require("packer").startup(function(use)
     -- Auto closing
     use "windwp/nvim-autopairs"
 
+    use { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }
+
     -- Jump to word
     use "unblevable/quick-scope"
 
