@@ -43,7 +43,7 @@ vim.cmd [[
 augroup autosave
     autocmd!
     autocmd BufRead * if &filetype == "" | setlocal ft=text | endif
-    autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 && index(g:autosave_ft_ignore, &ft) == -1 && &buftype == "" | silent write! | doautocmd BufWritePost | endif
+    autocmd FileType * autocmd TextChanged,InsertLeave <buffer> if &readonly == 0 && index(g:autosave_ft_ignore, &ft) == -1 && &buftype == "" && bufname() != "" | silent write! | doautocmd BufWritePost | endif
 augroup END ]]
 
 vim.cmd [[
