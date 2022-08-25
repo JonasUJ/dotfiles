@@ -1,53 +1,20 @@
 local gl = require "galaxyline"
 
-vim.o.laststatus = 2
+local config = require("tokyonight.config")
+local colors = require("tokyonight.colors").setup(config)
 
--- TODO: link to highlight groups
--- TokyoNight Storm
-local colors = {
-    bg = "#1f2335",
-    secondary_bg = "#414868",
-    red = "#f7768e",
-    red1 = "#db4b4b",
-    green = "#9ece6a",
-    yellow = "#e0af68",
-    blue = "#7aa2f7",
-    purple = "#9d7cd8",
-    cyan = "#7dcfff",
-    grey = "#a9b1d6",
-    orange = "#ff9e64",
-    error_red = "#db4b4b",
-    turquoise = "#73daca",
-    teal = "#1abc9c",
-    gitadd = "#449dab",
-    gitdelete = "#914c54",
-    gitchange = "#6183bb",
-    gitconflict = "#bb7a61",
-}
-
--- One Dark
--- local colors = {
---     bg = "#282C34",
---     red = "#E06C75",
---     green = "#98C379",
---     yellow = "#E5C07B",
---     blue = "#61AFEF",
---     purple = "#C678DD",
---     cyan = "#56B6C2",
---     grey = "#ABB2BF",
---     orange = "#FF8800",
---     error_red = "#F44747",
--- }
+O.laststatus = 2
+vim.cmd("highlight StatusLine guibg=" .. colors.bg)
 
 local mode_color = {
     n = { colors.blue, "NORMAL" },
     no = { colors.green, "OPERATOR PENDING" },
-    i = { colors.turquoise, "INSERT" },
+    i = { colors.green2, "INSERT" },
     v = { colors.purple, "VISUAL" },
     V = { colors.purple, "VISUAL LINE" },
     [""] = { colors.purple, "VISUAL BLOCK" },
     c = { colors.yellow, "COMMAND" },
-    ic = { colors.turquoise, "INSERT" },
+    ic = { colors.green2, "INSERT" },
     cv = { colors.red, "EX" },
     ce = { colors.red, "EX" },
     s = { colors.orange, "SELECT" },
@@ -110,8 +77,8 @@ gls.left[S()] = {
             return ""
         end,
         separator = " ",
-        separator_highlight = { "NONE", colors.secondary_bg },
-        highlight = { "NONE", colors.secondary_bg }
+        separator_highlight = { "NONE", colors.bg_highlight },
+        highlight = { "NONE", colors.bg_highlight }
     }
 }
 
@@ -122,8 +89,8 @@ gls.left[S()] = {
         end,
         condition = condition.check_git_workspace,
         separator = " ",
-        separator_highlight = { "NONE", colors.secondary_bg },
-        highlight = { colors.blue, colors.secondary_bg }
+        separator_highlight = { "NONE", colors.bg_highlight },
+        highlight = { colors.blue, colors.bg_highlight }
     }
 }
 
@@ -132,8 +99,8 @@ gls.left[S()] = {
         provider = "GitBranch",
         condition = condition.check_git_workspace,
         separator = " ",
-        separator_highlight = { "NONE", colors.secondary_bg },
-        highlight = { colors.blue, colors.secondary_bg }
+        separator_highlight = { "NONE", colors.bg_highlight },
+        highlight = { colors.blue, colors.bg_highlight }
     }
 }
 
@@ -145,7 +112,7 @@ gls.left[S()] = {
         condition.check_git_workspace,
         separator = " ",
         separator_highlight = { "NONE", colors.bg },
-        highlight = { colors.secondary_bg, colors.bg }
+        highlight = { colors.bg_highlight, colors.bg }
     }
 }
 
@@ -154,7 +121,7 @@ gls.left[S()] = {
         provider = "DiffAdd",
         condition = condition.hide_in_width,
         icon = " ",
-        highlight = { colors.gitadd, colors.bg }
+        highlight = { colors.git.add, colors.bg }
     }
 }
 
@@ -163,7 +130,7 @@ gls.left[S()] = {
         provider = "DiffModified",
         condition = condition.hide_in_width,
         icon = " ",
-        highlight = { colors.gitchange, colors.bg }
+        highlight = { colors.git.change, colors.bg }
     }
 }
 
@@ -172,7 +139,7 @@ gls.left[S()] = {
         provider = "DiffRemove",
         condition = condition.hide_in_width,
         icon = " ",
-        highlight = { colors.gitdelete, colors.bg }
+        highlight = { colors.git.delete, colors.bg }
     }
 }
 
@@ -186,7 +153,7 @@ gls.left[S()] = {
         end,
         separator = " ",
         separator_highlight = { "NONE", colors.bg },
-        highlight = { colors.secondary_bg, colors.bg }
+        highlight = { colors.bg_highlight, colors.bg }
     }
 }
 
@@ -194,7 +161,7 @@ gls.left[S()] = {
     FileIcon = {
         provider = "FileIcon",
         condition = condition.buffer_not_empty,
-        highlight = { colors.turquoise, colors.bg }
+        highlight = { colors.green2, colors.bg }
     }
 }
 
@@ -204,7 +171,7 @@ gls.left[S()] = {
         condition.buffer_not_empty,
         separator = " ",
         separator_highlight = { "NONE", colors.bg },
-        highlight = { colors.turquoise, colors.bg }
+        highlight = { colors.green2, colors.bg }
     }
 }
 
@@ -219,7 +186,7 @@ gls.mid[S()] = {
         provider = Clock,
         icon = " ",
         condition = condition.hide_in_width,
-        highlight = { colors.secondary_bg, colors.bg }
+        highlight = { colors.bg_highlight, colors.bg }
     }
 }
 
@@ -283,7 +250,7 @@ gls.right[S()] = {
         end,
         separator = " ",
         separator_highlight = { "NONE", colors.bg },
-        highlight = { colors.secondary_bg, colors.bg }
+        highlight = { colors.bg_highlight, colors.bg }
     }
 }
 
@@ -291,15 +258,15 @@ gls.right[S()] = {
     LineInfo = {
         provider = "LineColumn",
         separator = "  ",
-        separator_highlight = { "NONE", colors.secondary_bg },
-        highlight = { colors.grey, colors.secondary_bg }
+        separator_highlight = { "NONE", colors.bg_highlight },
+        highlight = { colors.fg_dark, colors.bg_highlight }
     }
 }
 
 gls.right[S()] = {
     Percent = {
         provider = "LinePercent",
-        highlight = { colors.grey, colors.secondary_bg }
+        highlight = { colors.fg_dark, colors.bg_highlight }
     }
 }
 
@@ -309,7 +276,7 @@ gls.right[S()] = {
             return ""
         end,
         condition = condition.hide_in_width,
-        highlight = { colors.bg, colors.secondary_bg }
+        highlight = { colors.bg, colors.bg_highlight }
     }
 }
 
@@ -318,8 +285,8 @@ gls.right[S()] = {
         provider = "FileEncode",
         condition = condition.hide_in_width,
         separator = " ",
-        separator_highlight = { "NONE", colors.secondary_bg },
-        highlight = { colors.grey, colors.secondary_bg }
+        separator_highlight = { "NONE", colors.bg_highlight },
+        highlight = { colors.fg_dark, colors.bg_highlight }
     }
 }
 
@@ -330,8 +297,8 @@ gls.right[S()] = {
         end,
         condition = condition.hide_in_width,
         separator = " ",
-        separator_highlight = { "NONE", colors.secondary_bg },
-        highlight = { colors.grey, colors.secondary_bg }
+        separator_highlight = { "NONE", colors.bg_highlight },
+        highlight = { colors.fg_dark, colors.bg_highlight }
     }
 }
 
@@ -344,8 +311,8 @@ gls.right[S()] = {
             return ""
         end,
         separator = " ",
-        separator_highlight = { "NONE", colors.secondary_bg },
-        highlight = { "NONE", colors.secondary_bg }
+        separator_highlight = { "NONE", colors.bg_highlight },
+        highlight = { "NONE", colors.bg_highlight }
     }
 }
 
@@ -370,7 +337,7 @@ gls.right[S()] = {
 gls.right[S()] = {
     BufferType = {
         provider = "FileTypeName",
-        separator_highlight = { "NONE", colors.secondary_bg },
+        separator_highlight = { "NONE", colors.bg_highlight },
         highlight = { colors.bg, "NONE" }
     }
 }
@@ -392,21 +359,21 @@ gls.short_line_left[S()] = {
         provider = function()
             return " "
         end,
-        highlight = { "NONE", colors.secondary_bg }
+        highlight = { "NONE", colors.bg_highlight }
     }
 }
 
 gls.short_line_left[S()] = {
     SFileIcon = {
         provider = "FileIcon",
-        highlight = { colors.blue, colors.secondary_bg }
+        highlight = { colors.blue, colors.bg_highlight }
     }
 }
 
 gls.short_line_left[S()] = {
     SFileName = {
         provider = "FileName",
-        highlight = { colors.blue, colors.secondary_bg }
+        highlight = { colors.blue, colors.bg_highlight }
     }
 }
 
@@ -417,6 +384,6 @@ gls.short_line_left[S()] = {
         end,
         separator = " ",
         separator_highlight = { "NONE", colors.bg },
-        highlight = { colors.secondary_bg, colors.bg }
+        highlight = { colors.bg_highlight, colors.bg }
     }
 }

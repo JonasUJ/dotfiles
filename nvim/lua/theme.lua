@@ -6,7 +6,7 @@ G.gruvbox_italic = 1
 G.onedark_terminal_italics = 1
 
 G.tokyonight_dark_sidebar = { "trouble", "NvimTree", "packer" }
-G.tokyonight_style = "storm"
+G.tokyonight_style = "night"
 
 vim.cmd "colorscheme tokyonight"
 
