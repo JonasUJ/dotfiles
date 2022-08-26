@@ -1,6 +1,7 @@
 local gl = require "galaxyline"
 
 local config = require("tokyonight.config")
+config.transform_colors = true
 local colors = require("tokyonight.colors").setup(config)
 
 O.laststatus = 2
