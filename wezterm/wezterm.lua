@@ -58,7 +58,6 @@ end
 
 return {
     use_fancy_tab_bar = false,
-    hide_tab_bar_if_only_one_tab = true,
     tab_bar_at_bottom = true,
     color_schemes = {
         [scheme_name] = scheme,
