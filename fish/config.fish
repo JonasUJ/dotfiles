@@ -10,7 +10,7 @@ set -x GPG_TTY (tty)
 
 # TokyoNight Color Palette
 set -l foreground c0caf5
-set -l selection 364A82
+set -l selection 33467C
 set -l comment 565f89
 set -l red f7768e
 set -l orange ff9e64
