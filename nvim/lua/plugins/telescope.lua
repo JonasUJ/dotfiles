@@ -50,9 +50,6 @@ require "telescope".setup {
         diagnostics = {
             theme = "ivy",
         },
-        lsp_code_actions = {
-            theme = "ivy",
-        },
     },
     extensions = {
         -- ...
@@ -89,7 +86,6 @@ Map("n", "<Leader>fi", "<Cmd>lua require'telescope.builtin'.lsp_implementations(
 Map("n", "<Leader>fd", "<Cmd>lua require'telescope.builtin'.lsp_definitions()<CR>")
 Map("n", "<Leader>fD", "<Cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>")
 Map("n", "<Leader>fs", "<Cmd>lua require'telescope.builtin'.lsp_dynamic_workspace_symbols()<CR>")
-Map("n", "gc", "<Cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>")
 
 -- Git
 Map("n", "<Leader>gc", "<Cmd>lua require'telescope.builtin'.git_commits()<CR>")
