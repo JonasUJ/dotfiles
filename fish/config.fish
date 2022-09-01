@@ -1,5 +1,5 @@
 if not set -q HOMEBREW_PREFIX
-    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    eval (brew shellenv)
 end
 
 starship init fish | source
