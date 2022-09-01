@@ -1,5 +1,9 @@
 if not set -q HOMEBREW_PREFIX
-    eval (brew shellenv)
+    if type -q brew
+        eval (brew shellenv)
+    else
+        eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    end
 end
 
 starship init fish | source
