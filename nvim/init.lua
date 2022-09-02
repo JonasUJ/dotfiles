@@ -14,6 +14,7 @@ require "lsp"
 -- require "neovide"
 
 -- Plugins
+require "plugins.nvim-cmp"
 require "plugins.nvim-autopairs"
 require "plugins.impatient"
 require "plugins.mason"

@@ -1,4 +1,3 @@
-require "plugins.nvim-cmp"
 require "plugins.lsp_lines"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

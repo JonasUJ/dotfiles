@@ -7,12 +7,12 @@ cmp.setup {
         end,
     },
     mapping = {
-        ["<Tab>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-        ["<S-Tab>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }, { "i", "c" }),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }, { "i", "c" }),
         ["<C-y>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-e>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<CR>"] = cmp.mapping.confirm { select = true, behavior = cmp.SelectBehavior.Replace },
+        ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.SelectBehavior.Replace }, { "i", "c" }),
     },
     sources = cmp.config.sources {
         { name = "nvim_lsp" },
@@ -39,6 +39,7 @@ cmp.setup.filetype("gitcommit", {
 })
 
 cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources(
         {
             { name = "path" }
@@ -54,6 +55,7 @@ cmp.setup.cmdline(":", {
 })
 
 cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = "buffer" }
     }

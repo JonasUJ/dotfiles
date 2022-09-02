@@ -72,9 +72,6 @@ return require("packer").startup(function(use)
     use "petertriho/cmp-git"
 
     -- Themes
-    use "jschmold/sweet-dark.vim"
-    use "morhetz/gruvbox"
-    use "joshdick/onedark.vim"
     use "folke/tokyonight.nvim"
 
     -- Status Line and Bufferline
