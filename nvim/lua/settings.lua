@@ -28,6 +28,7 @@ O.timeoutlen = 500 -- By default timeoutlen is 1000 ms
 O.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 O.path = ".,,**" -- Easier find
 O.showmode = false -- Mode is shown on statusline instead
+O.scrolloff = 4 -- Scroll offset
 
 vim.cmd "set grepprg=rg\\ --vimgrep\\ --no-heading\\ --smart-case\\ --"
 vim.cmd "set grepformat=%f:%l:%c:%m,%f%l%m"
