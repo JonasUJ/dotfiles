@@ -59,6 +59,8 @@ end
 return {
     use_fancy_tab_bar = false,
     tab_bar_at_bottom = true,
+    initial_cols = 107,
+    initial_rows = 40,
     color_schemes = {
         [scheme_name] = scheme,
     },
