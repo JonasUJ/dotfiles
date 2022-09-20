@@ -24,6 +24,3 @@ require "gitsigns".setup {
     },
     current_line_blame = true,
 }
-
--- Why do I need this?
-vim.cmd "autocmd ColorScheme * lua require('gitsigns')._update_highlights()"
