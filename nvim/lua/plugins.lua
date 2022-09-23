@@ -75,8 +75,7 @@ return require("packer").startup(function(use)
     use "folke/tokyonight.nvim"
 
     -- Status Line and Bufferline
-    use "NTBBloodbath/galaxyline.nvim"
-    use "romgrk/barbar.nvim"
+    use "nvim-lualine/lualine.nvim"
 
     -- Comments
     use "numToStr/Comment.nvim"
