@@ -16,7 +16,7 @@ function M.mappings()
     Map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     -- Map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
     Map("n", "gc", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    Map("n", "<A-f>", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opts)
+    Map("n", "<A-f>", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     Map("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     -- Map("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 end
