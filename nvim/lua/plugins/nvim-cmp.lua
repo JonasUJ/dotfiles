@@ -12,7 +12,7 @@ cmp.setup {
         ["<C-y>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-e>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.SelectBehavior.Replace }, { "i", "c" }),
+        ["<CR>"] = cmp.mapping.confirm({ select = false, behavior = cmp.SelectBehavior.Replace }, { "i", "c" }),
     },
     sources = cmp.config.sources {
         { name = "nvim_lsp" },
