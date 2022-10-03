@@ -113,12 +113,16 @@ local function rotate(amount)
     end
 end
 
+-- Close
+Map("n", "<A-c>", function()
+    if not pcall(vim.cmd, "bp|bd! #") then
+        vim.cmd [[bd!]]
+    end
+end, opts)
+
 -- Move to previous/next
 Map("n", "<A-,>", rotate(-1), opts)
 Map("n", "<A-.>", rotate(1), opts)
-
--- Close
-Map("n", "<A-c>", function() vim.cmd [[bp|bd! #]] end, opts)
 
 -- Goto buffer in position...
 Map("n", "<A-1>", ":LualineBufferJump! 1<CR>", opts)
