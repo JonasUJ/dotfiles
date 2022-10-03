@@ -9,6 +9,13 @@ local light_theme = "tokyonight-day"
 local dark_theme = "tokyonight-night"
 
 vim.cmd("colorscheme " .. dark_theme)
+vim.schedule(function ()
+    if config.is_day() then
+        vim.cmd("colorscheme " .. light_theme)
+    else
+        vim.cmd("colorscheme " .. dark_theme)
+    end
+end)
 
 vim.cmd [[
 augroup ColorColumnTheme

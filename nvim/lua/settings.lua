@@ -30,6 +30,8 @@ O.path = ".,,**" -- Easier find
 O.showmode = false -- Mode is shown on statusline instead
 O.scrolloff = 4 -- Scroll offset
 
+vim.cmd "set shortmess+=I" -- disable intro message
+
 vim.cmd "set grepprg=rg\\ --vimgrep\\ --no-heading\\ --smart-case\\ --"
 vim.cmd "set grepformat=%f:%l:%c:%m,%f%l%m"
 
