@@ -74,6 +74,11 @@ return require("packer").startup(function(use)
     -- Themes
     use "folke/tokyonight.nvim"
 
+    -- UI
+    -- use "MunifTanjim/nui.nvim"
+    -- use "rcarriga/nvim-notify"
+    -- use "folke/noice.nvim"
+
     -- Status Line and Bufferline
     use "nvim-lualine/lualine.nvim"
 
