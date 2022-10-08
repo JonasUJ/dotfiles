@@ -33,12 +33,6 @@ Map("n", "<A-S-j>", "<Cmd>resize -2<CR>")
 Map("n", "<A-S-k>", "<Cmd>resize +2<CR>")
 Map("n", "<A-S-l>", "<Cmd>vertical resize +2<CR>")
 
--- Escape
-Map("i", "jk", "<Esc>")
-Map("i", "kj", "<Esc>")
-Map("c", "jk", "<Esc>")
-Map("c", "kj", "<Esc>")
-
 -- Buffers
 Map("n", "<Leader>bd", "<Cmd>bd!<CR>")
 
