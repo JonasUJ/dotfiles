@@ -22,6 +22,13 @@ return require("packer").startup(function(use)
 
     -- UI
     use "stevearc/dressing.nvim"
+    -- use {
+    --     "folke/noice.nvim",
+    --     requires = {
+    --         "MunifTanjim/nui.nvim",
+    --         "rcarriga/nvim-notify",
+    --     }
+    -- }
 
     -- Rust
     use "Saecki/crates.nvim"
@@ -60,7 +67,6 @@ return require("packer").startup(function(use)
     use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
     -- Autocomplete
-    -- use "hrsh7th/nvim-compe"
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
@@ -73,11 +79,6 @@ return require("packer").startup(function(use)
 
     -- Themes
     use "folke/tokyonight.nvim"
-
-    -- UI
-    -- use "MunifTanjim/nui.nvim"
-    -- use "rcarriga/nvim-notify"
-    -- use "folke/noice.nvim"
 
     -- Status Line and Bufferline
     use "nvim-lualine/lualine.nvim"

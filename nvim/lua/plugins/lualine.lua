@@ -77,9 +77,6 @@ require "lualine".setup {
             }
         },
     },
-    -- winbar = {
-    --     lualine_c = { "filename" },
-    -- }
 }
 
 local opts = { silent = true }
