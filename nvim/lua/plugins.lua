@@ -22,13 +22,13 @@ return require("packer").startup(function(use)
 
     -- UI
     use "stevearc/dressing.nvim"
-    -- use {
-    --     "folke/noice.nvim",
-    --     requires = {
-    --         "MunifTanjim/nui.nvim",
-    --         "rcarriga/nvim-notify",
-    --     }
-    -- }
+    use {
+        "folke/noice.nvim",
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    }
 
     -- Rust
     use "Saecki/crates.nvim"
