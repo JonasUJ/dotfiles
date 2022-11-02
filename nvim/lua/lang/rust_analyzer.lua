@@ -1,5 +1,6 @@
 local M = {}
 
+-- TODO: Investigate version from Mason
 -- Set LLDB_EXT_PATH to extension install location
 -- Usually:
 -- ~/.vscode/extensions/vadimcn.vscode-lldb-1.6.9/
@@ -21,7 +22,8 @@ function M.setup(opts)
         server = {
             on_attach = on_attach,
             capabilities = opts.capabilities,
-            -- cargo install ra_ap_rust-analyzer
+            -- rustup component add rust-analyzer
+            -- ln -s (rustup which --toolchain stable rust-analyzer) ~/.cargo/bin/rust-analyzer
             cmd = { "rust-analyzer" },
             settings = {
                 ["rust-analyzer"] = {
@@ -36,6 +38,15 @@ function M.setup(opts)
                             "--all-features",
                         },
                     },
+                    -- TODO: Doesn't work in neovim?
+                    inlayHints = {
+                        lifetimeElisionHints = {
+                            enable = "always",
+                        },
+                        reborrowHints = {
+                            enable = "always",
+                        },
+                    }
                 },
             },
         },
