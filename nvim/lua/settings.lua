@@ -54,3 +54,5 @@ if has("persistent_undo")
     set undodir=$HOME/.nvim/undodir
     set undofile
 endif ]]
+
+G.filetype_fs = "fsharp"
