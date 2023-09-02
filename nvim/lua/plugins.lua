@@ -40,7 +40,7 @@ return require("packer").startup(function(use)
     use "lukas-reineke/indent-blankline.nvim"
 
     -- File explorer
-    use {"kyazdani42/nvim-tree.lua", commit = "ace6422"}
+    use "kyazdani42/nvim-tree.lua"
     use "nvim-telescope/telescope.nvim"
 
     -- Icons
