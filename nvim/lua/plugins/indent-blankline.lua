@@ -1,8 +1,9 @@
-require "indent_blankline".setup {
-    buftype_exclude = { "terminal" },
-    filetype_exclude = { "help", "startify", "dashboard", "packer", "neogitstatus", "NVIMTREE", "mason" },
-    char = "▏",
-    use_treesitter = true,
-    show_trailing_blankline_indent = false,
-    show_current_context = true,
+require "ibl".setup {
+    exclude = {
+        buftypes = { "terminal" },
+        filetypes = { "help", "startify", "dashboard", "packer", "neogitstatus", "NVIMTREE", "mason" }
+    },
+    indent = {
+        char = "▏",
+    },
 }
