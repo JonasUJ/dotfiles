@@ -12,7 +12,7 @@ require "lualine".setup {
                 function()
                     return os.date("%H:%M:%S")
                 end,
-                icon = { "" },
+                icon = { " " },
             },
         }
     },
@@ -21,7 +21,7 @@ require "lualine".setup {
         lualine_b = {
             {
                 "branch",
-                icon = { "", },
+                icon = { " ", },
             },
         },
         lualine_c = {
