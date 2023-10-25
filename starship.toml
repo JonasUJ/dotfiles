@@ -17,23 +17,23 @@ style="bold green"
 [git_branch]
 symbol=" "
 [golang]
-symbol=" "
+symbol=" "
 [java]
 symbol=" "
 [lua]
 symbol=" "
 [memory_usage]
-symbol=" "
+symbol="󰡴 "
 [nix_shell]
 symbol=" "
 [openstack]
 symbol=" "
 [package]
-symbol=" "
+symbol=" "
 [perl]
 symbol=" "
 [php]
-symbol=" "
+symbol=" "
 [python]
 symbol=" "
 [ruby]
