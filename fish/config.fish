@@ -2,7 +2,11 @@ if not set -q HOMEBREW_PREFIX
     if type -q brew
         eval (brew shellenv)
     else
-        eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	if type -q /home/linuxbrew/.linuxbrew/bin/brew
+	    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+        else
+            eval (/opt/homebrew/bin/brew shellenv)
+        end
     end
 end
 

@@ -96,6 +96,6 @@ return require("packer").startup(function(use)
     use { "iamcco/markdown-preview.nvim", run = "cd app && npm install" }
 
     -- Debugger
-    use "rcarriga/nvim-dap-ui"
+    use { "rcarriga/nvim-dap-ui", requires = "nvim-neotest/nvim-nio" }
     use "mfussenegger/nvim-dap"
 end)
