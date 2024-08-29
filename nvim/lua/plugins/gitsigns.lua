@@ -1,26 +1,56 @@
 require "gitsigns".setup {
-    signs = {
-        add          = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-        change       = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-        delete       = { hl = "GitSignsDelete", text = "", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        topdelete    = { hl = "GitSignsDelete", text = "", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    },
-    keymaps = {
-        noremap = true,
-        buffer = true,
-
-        ["n <leader>hn"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
-        ["n <leader>hN"] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
-
-        ["n <leader>hs"] = "<cmd>lua require'gitsigns'.stage_hunk()<CR>",
-        ["n <leader>hu"] = "<cmd>lua require'gitsigns'.undo_stage_hunk()<CR>",
-        ["n <leader>hr"] = "<cmd>lua require'gitsigns'.reset_hunk()<CR>",
-        ["n <leader>hR"] = "<cmd>lua require'gitsigns'.reset_buffer()<CR>",
-        ["n <leader>hp"] = "<cmd>lua require'gitsigns'.preview_hunk()<CR>",
-        ["n <leader>hb"] = "<cmd>lua require'gitsigns'.blame_line()<CR>",
-        ["n <leader>hS"] = "<cmd>lua require'gitsigns'.stage_buffer()<CR>",
-        ["n <leader>hU"] = "<cmd>lua require'gitsigns'.reset_buffer_index()<CR>",
-    },
     current_line_blame = true,
+    signs = {
+        add          = { text = "┃" },
+        change       = { text = "┃" },
+        delete       = { text = "" },
+        topdelete    = { text = "" },
+        changedelete = { text = "┃" },
+        untracked    = { text = '┇' },
+    },
+    signs_staged = {
+        add          = { text = "┃" },
+        change       = { text = "┃" },
+        delete       = { text = "" },
+        topdelete    = { text = "" },
+        changedelete = { text = "┃" },
+        untracked    = { text = '┇' },
+    },
+    on_attach = function(bufnr)
+        local gitsigns = require('gitsigns')
+        local opts = { buffer = bufnr }
+
+        -- Navigation
+        Map('n', 'hn', function()
+            if vim.wo.diff then
+                vim.cmd.normal({ ']c', bang = true })
+            else
+                gitsigns.nav_hunk('next')
+            end
+        end, opts)
+
+        Map('n', 'hN', function()
+            if vim.wo.diff then
+                vim.cmd.normal({ '[c', bang = true })
+            else
+                gitsigns.nav_hunk('prev')
+            end
+        end, opts)
+
+        -- Actions
+        Map('n', '<leader>hs', gitsigns.stage_hunk, opts)
+        Map('n', '<leader>hr', gitsigns.reset_hunk, opts)
+        Map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, opts)
+        Map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, opts)
+        Map('n', '<leader>hS', gitsigns.stage_buffer, opts)
+        Map('n', '<leader>hu', gitsigns.undo_stage_hunk, opts)
+        Map('n', '<leader>hR', gitsigns.reset_buffer, opts)
+        Map('n', '<leader>hp', gitsigns.preview_hunk, opts)
+        Map('n', '<leader>hd', gitsigns.diffthis, opts)
+        Map('n', '<leader>hD', function() gitsigns.diffthis('~') end, opts)
+        Map('n', '<leader>td', gitsigns.toggle_deleted, opts)
+
+        -- Text object
+        Map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts)
+    end
 }
