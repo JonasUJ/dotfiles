@@ -18,17 +18,17 @@ set -x GPG_TTY (tty)
 
 function theme -a name
     if [ $name = "light" ]
-        # TokyoNight Color Palette
-        set -l foreground 3760bf
-        set -l selection 99a7df
-        set -l comment 848cb5
-        set -l red f52a65
-        set -l orange b15c00
-        set -l yellow 8c6c3e
-        set -l green 587539
-        set -l purple 7847bd
-        set -l cyan 007197
-        set -l pink 9854f1
+        # Catppuccin Latte Color Palette
+        set -l foreground 4c4f69
+        set -l selection ccd0da
+        set -l comment 8c8fa1
+        set -l red d20f39
+        set -l orange fe640b
+        set -l yellow df8e1d
+        set -l green 40a02b
+        set -l purple 8839ef
+        set -l cyan 04a5e5
+        set -l pink ea76cb
 
         # Syntax Highlighting Colors
         set -g fish_color_normal $foreground
@@ -53,17 +53,17 @@ function theme -a name
         set -g fish_pager_color_description $comment
         set -g fish_pager_color_selected_background --background=$selection
     else if [ $name = "dark" ]
-        # TokyoNight Color Palette
-        set -l foreground c0caf5
-        set -l selection 33467c
-        set -l comment 565f89
-        set -l red f7768e
-        set -l orange ff9e64
-        set -l yellow e0af68
-        set -l green 9ece6a
-        set -l purple 9d7cd8
-        set -l cyan 7dcfff
-        set -l pink bb9af7
+        # Catppuccin Mocha Color Palette
+        set -l foreground cdd6f4
+        set -l selection 313244
+        set -l comment 7f849c
+        set -l red f38ba8
+        set -l orange fab387
+        set -l yellow f9e2af
+        set -l green a6e3a1
+        set -l purple cba6f7
+        set -l cyan 89dceb
+        set -l pink f5c2e7
         # Syntax Highlighting Colors
 
         set -g fish_color_normal $foreground
@@ -91,3 +91,27 @@ function theme -a name
 end
 
 theme dark
+
+# Switch palettes to match the terminal's light/dark colours (fish detects them itself)
+function __theme_follow_terminal --on-variable fish_terminal_color_theme
+    if contains -- $fish_terminal_color_theme light dark
+        theme $fish_terminal_color_theme
+    end
+end
+
+# Follow WezTerm's Ctrl+Alt+O toggle in already-open shells: the toggle writes
+# light/dark to this file, and each prompt applies it if it changed since last seen
+set -g __theme_file ~/.cache/wezterm-theme
+function __theme_file_stamp
+    test -r $__theme_file; or return 1
+    read -l t <$__theme_file
+    echo (path mtime $__theme_file) $t
+end
+set -g __theme_file_seen (__theme_file_stamp)
+function __theme_sync --on-event fish_prompt
+    set -l stamp (__theme_file_stamp); or return
+    test "$stamp" = "$__theme_file_seen"; and return
+    set -g __theme_file_seen $stamp
+    set -l t (string split ' ' -- $stamp)[2]
+    contains -- $t light dark; and theme $t
+end

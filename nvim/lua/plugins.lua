@@ -77,7 +77,7 @@ return require("packer").startup(function(use)
     use "petertriho/cmp-git"
 
     -- Themes
-    use "folke/tokyonight.nvim"
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- Status Line and Bufferline
     use "nvim-lualine/lualine.nvim"

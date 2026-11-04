@@ -1,12 +1,13 @@
-local config = require "tokyonight.config"
-
 O.termguicolors = true
 O.syntax = "on"
 
-G.tokyonight_dark_sidebar = { "trouble", "NvimTree", "packer" }
-
-require("tokyonight").setup {
-    style = "night",
+-- Mocha when background is dark, Latte when light (toggled with <A-o> below)
+require("catppuccin").setup {
+    flavour = "auto",
+    background = {
+        light = "latte",
+        dark = "mocha",
+    },
 }
 
 vim.cmd [[
@@ -24,4 +25,4 @@ Map("n", "<A-o>", function ()
     end
 end)
 
-vim.cmd("colorscheme " .. "tokyonight")
+vim.cmd("colorscheme " .. "catppuccin")

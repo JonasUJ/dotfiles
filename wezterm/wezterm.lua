@@ -1,7 +1,7 @@
 local wezterm = require "wezterm"
 
-local dark_scheme_name = "tokyonight"
-local light_scheme_name = "tokyonight-day"
+local dark_scheme_name = "Catppuccin Mocha"
+local light_scheme_name = "Catppuccin Latte"
 local color_schemes = {}
 
 for _, scheme_name in pairs({ dark_scheme_name, light_scheme_name }) do
@@ -64,17 +64,36 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end
 )
 
+-- Shells read this file at each prompt to follow the toggle (see fish/config.fish)
+local theme_file
+if wezterm.target_triple:find("windows") then
+    theme_file = "//wsl.localhost/Ubuntu/home/jonasuj/.cache/wezterm-theme"
+else
+    theme_file = wezterm.home_dir .. "/.cache/wezterm-theme"
+end
+
 wezterm.on("switch-scheme", function(window, pane)
     local overrides = window:get_config_overrides() or {}
-    if overrides.color_scheme == dark_scheme_name then
+    -- No override yet means the configured default scheme is showing
+    local current = overrides.color_scheme or window:effective_config().color_scheme
+    local theme
+    if current == dark_scheme_name then
         overrides.color_scheme = light_scheme_name
-        overrides.set_environment_variables = { THEME = "light" }
+        theme = "light"
     else
         overrides.color_scheme = dark_scheme_name
-        overrides.set_environment_variables = { THEME = "dark" }
+        theme = "dark"
     end
 
     window:set_config_overrides(overrides)
+
+    local f = io.open(theme_file, "w")
+    if f then
+        f:write(theme)
+        f:close()
+    else
+        wezterm.log_warn("could not write " .. theme_file)
+    end
 end)
 
 return {
