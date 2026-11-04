@@ -1,101 +1,87 @@
--- Bootstrap packer.nvim
-local execute = vim.api.nvim_command
-local fn = vim.fn
+-- Plugins are managed by Neovim's built-in package manager (vim.pack, Nvim 0.12+).
+--   :lua vim.pack.update()           update all plugins (review, then :write to apply)
+--   :lua vim.pack.del({ "name" })    remove a plugin from disk
+-- Exact revisions are pinned in nvim-pack-lock.json next to init.lua; commit it.
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local function gh(repo) return "https://github.com/" .. repo end
 
-if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-    execute "packadd packer.nvim"
-end
+-- Build steps that run after a plugin is installed or updated.
+-- Must be registered before vim.pack.add() so they also run on first install.
+vim.api.nvim_create_autocmd("PackChanged", {
+    group = vim.api.nvim_create_augroup("pack_hooks", { clear = true }),
+    callback = function(ev)
+        local name, kind = ev.data.spec.name, ev.data.kind
+        if kind ~= "install" and kind ~= "update" then return end
 
--- Install plugins
-return require("packer").startup(function(use)
-    -- Packer can manage itself
-    use "wbthomason/packer.nvim"
+        if name == "nvim-treesitter" then
+            if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
+            vim.cmd("TSUpdate")
+        end
+    end,
+})
 
-    -- Common dep
-    use "nvim-lua/plenary.nvim"
-
-    -- Speed
-    use "lewis6991/impatient.nvim"
-
-    -- UI
-    use "stevearc/dressing.nvim"
-    -- use {
-    --     "folke/noice.nvim",
-    --     requires = {
-    --         "MunifTanjim/nui.nvim",
-    --         "rcarriga/nvim-notify",
-    --     }
-    -- }
-
+vim.pack.add({
     -- Rust
-    use "Saecki/crates.nvim"
-    use "simrat39/rust-tools.nvim"
+    gh "Saecki/crates.nvim",
+    { src = gh "mrcjkb/rustaceanvim", version = vim.version.range("^6") },
 
     -- Better syntax support
-    use "sheerun/vim-polyglot"
-    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use "lukas-reineke/indent-blankline.nvim"
+    { src = gh "nvim-treesitter/nvim-treesitter", version = "main" },
+    gh "lukas-reineke/indent-blankline.nvim",
 
-    -- File explorer
-    use "kyazdani42/nvim-tree.lua"
-    use "nvim-telescope/telescope.nvim"
+    -- File explorer: tree on <Leader>t, oil (edit a directory like a buffer) on -
+    gh "nvim-tree/nvim-tree.lua",
+    gh "stevearc/oil.nvim",
+
+    -- Fuzzy finder (files, grep, tags, LSP, git, vim.ui.select); needs `fzf`
+    gh "ibhagwan/fzf-lua",
+
+    -- Shows available keys after a prefix such as <Leader>
+    gh "folke/which-key.nvim",
 
     -- Icons
-    use "kyazdani42/nvim-web-devicons"
+    gh "nvim-tree/nvim-web-devicons",
 
     -- Quickfix list
-    use "folke/trouble.nvim"
+    gh "folke/trouble.nvim",
 
     -- Auto closing
-    use "windwp/nvim-autopairs"
+    gh "windwp/nvim-autopairs",
 
-    use { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" }
+    -- Folding
+    gh "kevinhwang91/promise-async",
+    gh "kevinhwang91/nvim-ufo",
 
     -- Jump to word
-    use "unblevable/quick-scope"
+    gh "unblevable/quick-scope",
 
     -- LSP
-    use "williamboman/mason.nvim"
-    use "williamboman/mason-lspconfig.nvim"
-    use "neovim/nvim-lspconfig"
-    use "onsails/lspkind-nvim"
-    use "ray-x/lsp_signature.nvim"
-    use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+    gh "mason-org/mason.nvim",
+    gh "mason-org/mason-lspconfig.nvim",
+    gh "neovim/nvim-lspconfig",
 
-    -- Autocomplete
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-cmdline"
-    use "hrsh7th/cmp-nvim-lsp-signature-help"
-    use "L3MON4D3/LuaSnip"
-    use "saadparwaiz1/cmp_luasnip"
-    use "petertriho/cmp-git"
+    -- Autocomplete (tagged releases ship a prebuilt fuzzy matcher)
+    { src = gh "saghen/blink.cmp", version = vim.version.range("^1") },
+    gh "Kaiser-Yang/blink-cmp-git",
 
     -- Themes
-    use { "catppuccin/nvim", as = "catppuccin" }
+    { src = gh "catppuccin/nvim", name = "catppuccin" },
 
     -- Status Line and Bufferline
-    use "nvim-lualine/lualine.nvim"
-
-    -- Comments
-    use "numToStr/Comment.nvim"
+    gh "nvim-lualine/lualine.nvim",
 
     -- Color on hex codes
-    use "norcalli/nvim-colorizer.lua"
+    gh "catgoose/nvim-colorizer.lua",
 
     -- Git
-    use "tpope/vim-fugitive"
-    use "lewis6991/gitsigns.nvim"
+    gh "tpope/vim-fugitive",
+    gh "lewis6991/gitsigns.nvim",
 
-    -- Preview markdown et al.
-    use { "iamcco/markdown-preview.nvim", run = "cd app && npm install" }
+    -- Render markdown (headings, lists, code blocks, tables) inside the buffer
+    gh "MeanderingProgrammer/render-markdown.nvim",
 
     -- Debugger
-    use { "rcarriga/nvim-dap-ui", requires = "nvim-neotest/nvim-nio" }
-    use "mfussenegger/nvim-dap"
-end)
+    gh "mfussenegger/nvim-dap",
+    gh "nvim-neotest/nvim-nio",
+    gh "rcarriga/nvim-dap-ui",
+})

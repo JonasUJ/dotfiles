@@ -43,12 +43,12 @@ require "gitsigns".setup {
         Map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, opts)
         Map('v', '<leader>hr', function() gitsigns.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, opts)
         Map('n', '<leader>hS', gitsigns.stage_buffer, opts)
-        Map('n', '<leader>hu', gitsigns.undo_stage_hunk, opts)
+        Map('n', '<leader>hu', gitsigns.stage_hunk, opts) -- on a staged hunk this unstages it
         Map('n', '<leader>hR', gitsigns.reset_buffer, opts)
         Map('n', '<leader>hp', gitsigns.preview_hunk, opts)
         Map('n', '<leader>hd', gitsigns.diffthis, opts)
         Map('n', '<leader>hD', function() gitsigns.diffthis('~') end, opts)
-        Map('n', '<leader>td', gitsigns.toggle_deleted, opts)
+        Map('n', '<leader>hi', gitsigns.preview_hunk_inline, opts) -- not <leader>td: it made <leader>t (file explorer) wait
 
         -- Text object
         Map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts)

@@ -1,7 +1,7 @@
 require "lualine".setup {
     options = {
         globalstatus = false,
-        disabled_filetypes = { "NvimTree", "packer", "Trouble", "dapui_scopes", "dapui_breakpoints", "dapui_stacks",
+        disabled_filetypes = { "NvimTree", "Trouble", "dapui_scopes", "dapui_breakpoints", "dapui_stacks",
             "dapui_watches", "dap-repl", "fugitiveblame" }
     },
     tabline = {
@@ -38,7 +38,7 @@ require "lualine".setup {
             },
             {
                 function()
-                    local clients = vim.lsp.buf_get_clients()
+                    local clients = vim.lsp.get_clients({ bufnr = 0 })
                     local name = "[No LSP]"
                     local count = 0
 

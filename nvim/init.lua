@@ -3,6 +3,9 @@ if vim.g.vscode then
     return
 end
 
+-- Byte-compile and cache Lua modules (replaces impatient.nvim)
+vim.loader.enable()
+
 -- General
 require "utils"
 require "settings"
@@ -14,22 +17,20 @@ require "lsp"
 -- require "neovide"
 
 -- Plugins
-require "plugins.nvim-cmp"
+require "plugins.blink"
 require "plugins.nvim-autopairs"
-require "plugins.impatient"
-require "plugins.mason"
 require "plugins.treesitter"
-require "plugins.Comment"
 require "plugins.nvim-web-devicons"
 require "plugins.lualine"
 require "plugins.indent-blankline"
 require "plugins.nvim-tree"
+require "plugins.oil"
 require "plugins.gitsigns"
 require "plugins.colorizer"
 require "plugins.trouble"
-require "plugins.telescope"
-require "plugins.dressing"
+require "plugins.fzf"
 require "plugins.nvim-dap"
 require "plugins.crates"
 require "plugins.nvim-ufo"
--- require "plugins.noice"
+require "plugins.render-markdown"
+require "plugins.which-key"

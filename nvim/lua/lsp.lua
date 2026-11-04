@@ -1,22 +1,17 @@
-require "plugins.lsp_lines"
+-- LSP uses Neovim's built-in config API (vim.lsp.config / vim.lsp.enable, Nvim 0.11+).
+-- nvim-lspconfig only supplies the per-server defaults (its lsp/*.lua files), and
+-- mason-lspconfig enables every server installed through :Mason.
 
-local capabilities = require "cmp_nvim_lsp".default_capabilities()
+require "lang.on_attach".setup()
+require "lang.rust"
+
+-- Completion capabilities for every server are added by blink.cmp (plugins/blink.lua);
+-- put other defaults for all servers in vim.lsp.config("*", { ... }) here.
 
 require "mason".setup {}
-require "mason-lspconfig".setup {}
-require "mason-lspconfig".setup_handlers {
-    function (server)
-        local status, s = pcall(require, "lang." .. server)
-
-        if status then
-            server = s
-        else
-            server = require "lspconfig"[server]
-        end
-
-        server.setup {
-            on_attach = require "lang.on_attach".on_attach,
-            capabilities = capabilities,
-        }
-    end
+require "mason-lspconfig".setup {
+    automatic_enable = {
+        -- rustaceanvim starts and manages rust-analyzer itself
+        exclude = { "rust_analyzer" },
+    },
 }

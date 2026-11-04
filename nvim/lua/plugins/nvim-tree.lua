@@ -137,8 +137,6 @@ require "nvim-tree".setup {
     disable_netrw       = true,
     -- hijack netrw window on startup
     hijack_netrw        = true,
-    -- opens the tree when changing/opening a new tab if the tree wasn"t previously opened
-    open_on_tab         = false,
     -- hijacks new directory buffers when they are opened.
     hijack_directories  = {
         -- enable the feature
@@ -149,7 +147,7 @@ require "nvim-tree".setup {
     -- hijack the cursor in the tree to put it at the start of the filename
     hijack_cursor       = true,
     -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-    update_cwd          = false,
+    sync_root_with_cwd  = false,
     -- show lsp diagnostics in the signcolumn
     diagnostics         = {
         enable = true,
@@ -160,19 +158,12 @@ require "nvim-tree".setup {
         enable      = true,
         -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
         -- only relevant when `update_focused_file.enable` is true
-        update_cwd  = false,
-        -- list of buffer names / filetypes that will not update the cwd if the file isn"t found under the current root directory
-        -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
-        ignore_list = {}
+        update_root = {
+            enable = false,
+            -- list of buffer names / filetypes that will not update the cwd if the file isn"t found under the current root directory
+            ignore_list = {},
+        },
     },
-    -- configuration options for the system open command (`s` in the tree by default)
-    system_open         = {
-        -- the command to run this, leaving nil should work in most cases
-        cmd  = nil,
-        -- the command arguments as a list
-        args = {}
-    },
-
     view = {
         -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
         width = 30,
