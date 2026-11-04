@@ -78,6 +78,7 @@ wezterm.on("switch-scheme", function(window, pane)
 end)
 
 return {
+    font = wezterm.font("Cascadia Code NF"),
     use_fancy_tab_bar = false,
     tab_bar_at_bottom = true,
     initial_cols = 107,

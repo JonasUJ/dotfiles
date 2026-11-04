@@ -40,6 +40,8 @@ symbol=" "
 symbol=" "
 [rust]
 symbol=" "
+[scala]
+symbol=" "
 [status]
 format="[(SIG$signal_name )]($style)"
 disabled=false
