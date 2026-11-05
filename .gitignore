@@ -2,6 +2,9 @@
 **/*
 **/*.*
 
+# Directories must be re-included too, or git never looks inside them for new files
+!nvim/
+!nvim/**/
 !nvim/**/*.*
 !fish/**/*.*
 !xxh/**/*.*
